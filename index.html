@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0A1B25">
+<title>SMBH 2026 — Schedule</title>
+<style>
+:root{--bg:#0A1B25;--panel:#152433;--panel2:#1A2F3A;--accent:#5AB4CC;--glow:#A8DDE8;--text:#E2F4F9;}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  min-height:100vh;
+}
+
+/* ---- Header ---- */
+.site-header{
+  background:var(--panel2);
+  border-bottom:2px solid var(--accent);
+  padding:0.9rem 1rem 0.75rem;
+  position:sticky;top:0;z-index:200;
+}
+.site-header .conf-name{
+  font-size:0.7rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--glow);margin-bottom:0.15rem;
+}
+.site-header .day-name{
+  font-size:1.55rem;font-weight:800;color:#fff;line-height:1.15;
+}
+.site-header .day-date{
+  font-size:0.82rem;color:var(--accent);margin-top:0.1rem;
+}
+.site-header .star-row{
+  font-size:0.65rem;letter-spacing:0.18em;color:var(--accent);
+  opacity:0.5;margin-top:0.3rem;
+}
+
+/* ---- Day navigation ---- */
+.day-nav{
+  display:flex;gap:0.4rem;
+  padding:0.6rem 0.75rem;
+  background:var(--bg);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.day-nav::-webkit-scrollbar{display:none}
+.day-nav a{
+  flex-shrink:0;
+  padding:0.3rem 0.7rem;
+  border-radius:20px;
+  font-size:0.78rem;font-weight:600;
+  text-decoration:none;
+  color:rgba(255,255,255,0.6);
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:background 0.15s,color 0.15s;
+}
+.day-nav a.active{
+  background:var(--accent);
+  color:#07111F;
+  border-color:var(--accent);
+  font-weight:700;
+}
+.day-nav a:hover:not(.active){
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+}
+
+/* ---- Container ---- */
+.container{max-width:640px;margin:0 auto;padding:0 0.75rem 3rem}
+
+/* ---- Theme section ---- */
+.theme-section{margin-top:1.6rem}
+.theme-header{
+  display:flex;align-items:flex-start;gap:0.55rem;
+  padding:0.55rem 0.85rem;
+  border-radius:8px;
+  background:var(--panel);
+  margin-bottom:0.75rem;
+  border-left:3px solid var(--t-accent);
+}
+.theme-num{
+  font-size:0.68rem;font-weight:700;
+  color:var(--t-accent);
+  letter-spacing:0.06em;text-transform:uppercase;
+  white-space:nowrap;margin-top:0.1rem;
+}
+.theme-label{font-size:0.83rem;font-weight:600;color:var(--glow)}
+
+/* ---- Talk card ---- */
+.talk-card{
+  background:var(--panel);
+  border-radius:10px;
+  margin-bottom:0.55rem;
+  border:1px solid rgba(255,255,255,0.07);
+  overflow:hidden;
+}
+.talk-card summary{
+  padding:0.8rem 0.9rem 0.75rem;
+  cursor:pointer;
+  list-style:none;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.talk-card summary::-webkit-details-marker{display:none}
+.talk-card[open] summary{border-bottom:1px solid rgba(255,255,255,0.07)}
+.talk-top{
+  display:flex;align-items:center;justify-content:space-between;gap:0.5rem;
+  margin-bottom:0.3rem;
+}
+.talk-speaker{font-weight:700;font-size:0.95rem;color:#fff}
+.invited-badge{
+  flex-shrink:0;
+  font-size:0.62rem;font-weight:700;
+  padding:0.12rem 0.42rem;border-radius:12px;
+  background:rgba(200,146,42,0.18);
+  color:#C8922A;
+  border:1px solid rgba(200,146,42,0.45);
+  letter-spacing:0.05em;text-transform:uppercase;
+}
+.talk-title{
+  font-size:0.87rem;color:var(--glow);line-height:1.4;
+  padding-right:1.4rem;
+  position:relative;
+}
+.chevron{
+  position:absolute;right:0;top:0.1rem;
+  font-size:0.65rem;color:var(--accent);
+  transition:transform 0.2s;
+}
+details[open] .chevron{transform:rotate(180deg)}
+.talk-abstract{
+  padding:0.7rem 0.9rem 0.9rem;
+  font-size:0.82rem;
+  color:rgba(255,255,255,0.68);
+  line-height:1.65;
+}
+.talk-abstract p+p{margin-top:0.6rem}
+.talk-affil{
+  font-size:0.74rem;
+  color:rgba(255,255,255,0.38);
+  margin-top:0.15rem;
+}
+
+/* ---- Empty day ---- */
+.empty-day{
+  margin-top:2rem;
+  text-align:center;
+  color:rgba(255,255,255,0.3);
+  font-size:0.9rem;
+  font-style:italic;
+}
+
+/* ---- Footer ---- */
+.site-footer{
+  margin-top:2.5rem;
+  padding:1.2rem 1rem 2rem;
+  border-top:1px solid rgba(255,255,255,0.06);
+  text-align:center;
+}
+.site-footer .star-deco{
+  font-size:0.7rem;letter-spacing:0.2em;
+  color:var(--accent);opacity:0.4;margin-bottom:0.6rem;
+}
+.site-footer p{font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.7}
+.site-footer a{color:var(--accent);text-decoration:none}
+
+/* ---- Index page ---- */
+.index-hero{
+  padding:2.5rem 1rem 2rem;text-align:center;
+}
+.index-hero h1{
+  font-size:2rem;font-weight:800;color:#fff;
+}
+.index-hero .subtitle{
+  font-size:0.95rem;color:var(--glow);margin-top:0.4rem;font-style:italic;
+}
+.index-hero .dates{
+  font-size:0.85rem;color:var(--accent);margin-top:0.5rem;
+}
+.day-grid{
+  max-width:480px;margin:0 auto;
+  padding:0 0.75rem 3rem;
+  display:flex;flex-direction:column;gap:0.75rem;
+}
+.day-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.2rem;
+  border-radius:12px;
+  text-decoration:none;
+  background:var(--panel2);
+  border:1px solid rgba(255,255,255,0.08);
+  transition:border-color 0.15s,background 0.15s;
+}
+.day-btn:hover{
+  border-color:var(--accent);
+  background:var(--panel);
+}
+.day-btn-left .day-name-big{
+  font-size:1.1rem;font-weight:700;color:#fff;
+}
+.day-btn-left .day-date-small{
+  font-size:0.78rem;color:var(--accent);margin-top:0.1rem;
+}
+.day-btn-right{
+  font-size:0.7rem;color:rgba(255,255,255,0.3);
+}
+.talk-count-badge{
+  font-size:0.72rem;font-weight:600;
+  padding:0.2rem 0.55rem;border-radius:20px;
+  background:rgba(255,255,255,0.07);
+  color:rgba(255,255,255,0.45);
+}
+
+</style>
+</head>
+<body>
+<div class="index-hero">
+  <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;
+              text-transform:uppercase;color:var(--glow);margin-bottom:0.6rem">
+    Conference Schedule
+  </div>
+  <h1>SMBH 2026</h1>
+  <div class="subtitle">Supermassive Black Holes: From Seeds to Giants</div>
+  <div class="dates">June 29 &ndash; July 3, 2026 &middot; Montr&eacute;al</div>
+  <div style="font-size:0.7rem;letter-spacing:0.2em;color:var(--accent);
+              opacity:0.45;margin-top:0.9rem">
+    &#9733; &nbsp; &#9679; &nbsp; &#9733;
+  </div>
+</div>
+<div class="day-grid">
+<a class="day-btn" href="day1.html"><div class="day-btn-left"><div class="day-name-big">Monday</div><div class="day-date-small">June 29, 2026</div></div><span class="talk-count-badge">18 talks</span></a><a class="day-btn" href="day2.html"><div class="day-btn-left"><div class="day-name-big">Tuesday</div><div class="day-date-small">June 30, 2026</div></div><span class="talk-count-badge">19 talks</span></a><a class="day-btn" href="day3.html"><div class="day-btn-left"><div class="day-name-big">Wednesday</div><div class="day-date-small">July 1, 2026</div></div><span class="talk-count-badge">18 talks</span></a><a class="day-btn" href="day4.html"><div class="day-btn-left"><div class="day-name-big">Thursday</div><div class="day-date-small">July 2, 2026</div></div><span class="talk-count-badge">19 talks</span></a><a class="day-btn" href="day5.html"><div class="day-btn-left"><div class="day-name-big">Friday</div><div class="day-date-small">July 3, 2026</div></div><span class="talk-count-badge">7 talks</span></a>
+</div>
+<footer class="site-footer">
+  <div class="star-deco">&#11819; &nbsp; &#9679; &nbsp; &#11819;</div>
+  <p>Tap a day to see its full schedule and abstracts</p>
+</footer>
+</body>
+</html>

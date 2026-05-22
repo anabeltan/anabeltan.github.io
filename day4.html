@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0C1130">
+<title>SMBH 2026 — Thursday, July 2, 2026</title>
+<style>
+:root{--bg:#0C1130;--panel:#141936;--panel2:#1B2346;--accent:#90A7FF;--glow:#F0D08F;--text:#EEF0FF;}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  min-height:100vh;
+}
+
+/* ---- Header ---- */
+.site-header{
+  background:var(--panel2);
+  border-bottom:2px solid var(--accent);
+  padding:0.9rem 1rem 0.75rem;
+  position:sticky;top:0;z-index:200;
+}
+.site-header .conf-name{
+  font-size:0.7rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--glow);margin-bottom:0.15rem;
+}
+.site-header .day-name{
+  font-size:1.55rem;font-weight:800;color:#fff;line-height:1.15;
+}
+.site-header .day-date{
+  font-size:0.82rem;color:var(--accent);margin-top:0.1rem;
+}
+.site-header .star-row{
+  font-size:0.65rem;letter-spacing:0.18em;color:var(--accent);
+  opacity:0.5;margin-top:0.3rem;
+}
+
+/* ---- Day navigation ---- */
+.day-nav{
+  display:flex;gap:0.4rem;
+  padding:0.6rem 0.75rem;
+  background:var(--bg);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.day-nav::-webkit-scrollbar{display:none}
+.day-nav a{
+  flex-shrink:0;
+  padding:0.3rem 0.7rem;
+  border-radius:20px;
+  font-size:0.78rem;font-weight:600;
+  text-decoration:none;
+  color:rgba(255,255,255,0.6);
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:background 0.15s,color 0.15s;
+}
+.day-nav a.active{
+  background:var(--accent);
+  color:#07111F;
+  border-color:var(--accent);
+  font-weight:700;
+}
+.day-nav a:hover:not(.active){
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+}
+
+/* ---- Container ---- */
+.container{max-width:640px;margin:0 auto;padding:0 0.75rem 3rem}
+
+/* ---- Theme section ---- */
+.theme-section{margin-top:1.6rem}
+.theme-header{
+  display:flex;align-items:flex-start;gap:0.55rem;
+  padding:0.55rem 0.85rem;
+  border-radius:8px;
+  background:var(--panel);
+  margin-bottom:0.75rem;
+  border-left:3px solid var(--t-accent);
+}
+.theme-num{
+  font-size:0.68rem;font-weight:700;
+  color:var(--t-accent);
+  letter-spacing:0.06em;text-transform:uppercase;
+  white-space:nowrap;margin-top:0.1rem;
+}
+.theme-label{font-size:0.83rem;font-weight:600;color:var(--glow)}
+
+/* ---- Talk card ---- */
+.talk-card{
+  background:var(--panel);
+  border-radius:10px;
+  margin-bottom:0.55rem;
+  border:1px solid rgba(255,255,255,0.07);
+  overflow:hidden;
+}
+.talk-card summary{
+  padding:0.8rem 0.9rem 0.75rem;
+  cursor:pointer;
+  list-style:none;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.talk-card summary::-webkit-details-marker{display:none}
+.talk-card[open] summary{border-bottom:1px solid rgba(255,255,255,0.07)}
+.talk-top{
+  display:flex;align-items:center;justify-content:space-between;gap:0.5rem;
+  margin-bottom:0.3rem;
+}
+.talk-speaker{font-weight:700;font-size:0.95rem;color:#fff}
+.invited-badge{
+  flex-shrink:0;
+  font-size:0.62rem;font-weight:700;
+  padding:0.12rem 0.42rem;border-radius:12px;
+  background:rgba(200,146,42,0.18);
+  color:#C8922A;
+  border:1px solid rgba(200,146,42,0.45);
+  letter-spacing:0.05em;text-transform:uppercase;
+}
+.talk-title{
+  font-size:0.87rem;color:var(--glow);line-height:1.4;
+  padding-right:1.4rem;
+  position:relative;
+}
+.chevron{
+  position:absolute;right:0;top:0.1rem;
+  font-size:0.65rem;color:var(--accent);
+  transition:transform 0.2s;
+}
+details[open] .chevron{transform:rotate(180deg)}
+.talk-abstract{
+  padding:0.7rem 0.9rem 0.9rem;
+  font-size:0.82rem;
+  color:rgba(255,255,255,0.68);
+  line-height:1.65;
+}
+.talk-abstract p+p{margin-top:0.6rem}
+.talk-affil{
+  font-size:0.74rem;
+  color:rgba(255,255,255,0.38);
+  margin-top:0.15rem;
+}
+
+/* ---- Empty day ---- */
+.empty-day{
+  margin-top:2rem;
+  text-align:center;
+  color:rgba(255,255,255,0.3);
+  font-size:0.9rem;
+  font-style:italic;
+}
+
+/* ---- Footer ---- */
+.site-footer{
+  margin-top:2.5rem;
+  padding:1.2rem 1rem 2rem;
+  border-top:1px solid rgba(255,255,255,0.06);
+  text-align:center;
+}
+.site-footer .star-deco{
+  font-size:0.7rem;letter-spacing:0.2em;
+  color:var(--accent);opacity:0.4;margin-bottom:0.6rem;
+}
+.site-footer p{font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.7}
+.site-footer a{color:var(--accent);text-decoration:none}
+
+/* ---- Index page ---- */
+.index-hero{
+  padding:2.5rem 1rem 2rem;text-align:center;
+}
+.index-hero h1{
+  font-size:2rem;font-weight:800;color:#fff;
+}
+.index-hero .subtitle{
+  font-size:0.95rem;color:var(--glow);margin-top:0.4rem;font-style:italic;
+}
+.index-hero .dates{
+  font-size:0.85rem;color:var(--accent);margin-top:0.5rem;
+}
+.day-grid{
+  max-width:480px;margin:0 auto;
+  padding:0 0.75rem 3rem;
+  display:flex;flex-direction:column;gap:0.75rem;
+}
+.day-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.2rem;
+  border-radius:12px;
+  text-decoration:none;
+  background:var(--panel2);
+  border:1px solid rgba(255,255,255,0.08);
+  transition:border-color 0.15s,background 0.15s;
+}
+.day-btn:hover{
+  border-color:var(--accent);
+  background:var(--panel);
+}
+.day-btn-left .day-name-big{
+  font-size:1.1rem;font-weight:700;color:#fff;
+}
+.day-btn-left .day-date-small{
+  font-size:0.78rem;color:var(--accent);margin-top:0.1rem;
+}
+.day-btn-right{
+  font-size:0.7rem;color:rgba(255,255,255,0.3);
+}
+.talk-count-badge{
+  font-size:0.72rem;font-weight:600;
+  padding:0.2rem 0.55rem;border-radius:20px;
+  background:rgba(255,255,255,0.07);
+  color:rgba(255,255,255,0.45);
+}
+
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="conf-name">SMBH 2026 · Montr&eacute;al</div>
+  <div class="day-name">Thursday</div>
+  <div class="day-date">July 2, 2026</div>
+  <div class="star-row">&#9733; &nbsp; &#9679; &nbsp; &#9733; &nbsp; &#9679; &nbsp; &#9733;</div>
+</header>
+<nav class="day-nav"><a href="day1.html" class="">Monday</a><a href="day2.html" class="">Tuesday</a><a href="day3.html" class="">Wednesday</a><a href="day4.html" class="active">Thursday</a><a href="day5.html" class="">Friday</a></nav>
+<div class="container">
+<div class="theme-section"><div class="theme-header" style="--t-accent:#90A7FF"><span class="theme-num">Theme 3</span><span class="theme-label">Accretion, Jets and Multi-messenger Signatures</span></div><details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Bryan Terrazas</span></div><div class="talk-title">Tracking supermassive black hole-galaxy coevolutionary histories in galaxy formation models<span class="chevron">▼</span></div><div class="talk-affil">Oberlin College</div></summary><div class="talk-abstract"><p>Galaxy formation models rely on supermassive black holes (SMBHs) to suppress star formation and reproduce the observed census of massive galaxies. Since the amount of feedback released is directly dependent on the SMBH accretion rate history in these models, it is critical to accurately reproduce SMBH growth histories across the galaxy population. Current state-of-the-art models produce vastly different SMBH mass - stellar mass relations, indicating a need for observational constraints. I will present results from an empirical model of SMBH growth built on top of the UniverseMachine galaxy formation model that uses observationally-derived probability distributions for accretion rate as a function of galaxy properties. These results indicate a diversity of black hole growth histories: early, rapid growth for the most massive SMBHs in z = 0 quiescent galaxies, and late, gradual growth for lower mass SMBHs in z = 0 star-forming galaxies. We also find substantial evolution of the SMBH mass - stellar mass relation over time. I will also present results that merge our empirical model with a physical semi-analytic model, exploring how these accretion histories affect both mass and energy feedback from SMBHs.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Lauren Rhodes</span></div><div class="talk-title">Tidal Disruption Events: a probe of accretion onto supermassive black holes and their environments.<span class="chevron">▼</span></div><div class="talk-affil">McGill</div></summary><div class="talk-abstract"><p>Tidal disruption events (TDEs) are rare, multi-wavelength transients that allow astronomers to probe otherwise quiescent supermassive black holes. Only a fraction of TDEs exhibit luminous radio emission, with fewer still appearing consistent with a relativistic jet. Despite their scarcity, the jetted TDEs discovered thus far have been rich sources of information, promoting the idea that future events, discovered by LSST and AXIS (if it launches), will be transformational to our understanding of jetted transients and supermassive black hole accretion. In this talk, I will present our comprehensive radio analysis of the jetted TDE AT2022cmc. I will demonstrate how our dense radio and sub-mm coverage allowed us to constrain both the large-scale geometry and microphysics of the jet. From there, I will use these results to motivate the importance of studying jetted TDEs as it provides a new path for studying the accretion mechanisms around supermassive black holes and a unique view of the inner parsec region of otherwise-quiescent galaxies.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Kung-Yi Su</span></div><div class="talk-title">Bridging Scales: Coupling the galactic nucleus to the larger cosmic environment<span class="chevron">▼</span></div><div class="talk-affil">Northwestern University</div></summary><div class="talk-abstract"><p>Recent advances in Multi-Zone GRMHD now allow us to bidirectionally track gas flows between galactic scales and black-hole event horizons within a single simulation. This enables, for the first time, a first-principles, GRMHD-informed AGN feedback model that can be directly implemented in galaxy simulations at resolvable scales. We test the model in an M87-like isolated-galaxy simulation—with boundary conditions matched to those used in the Multi-Zone GRMHD run—and in cosmological zoom-in simulations of a massive cluster of comparable mass. We infer the black-hole spin required to reproduce the accretion rate observed by the Event Horizon Telescope and outline the conditions under which this black-hole accretion/feedback mode dominates.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Daniel Angles-Alcazar</span><span class="invited-badge">Invited</span></div><div class="talk-title">Modeling Supermassive Black Hole Growth and Feedback in Galaxy Evolution<span class="chevron">▼</span></div></summary><div class="talk-abstract"><p>While observations across the electromagnetic spectrum are providing an increasingly detailed view of supermassive black holes and galaxies across cosmic time, theoretical models face the challenge of capturing the multi-scale physical processes that connect black holes to their host galaxies and cosmological environment. In this talk, I will review our current understanding of active galactic nucleus (AGN) fueling and feedback from cosmological hydrodynamic simulations, which provide the most direct framework for modeling supermassive black holes in a galaxy evolution context but rely on uncertain sub-grid prescriptions to represent unresolved physical processes. I will discuss (1) recent progress and ongoing challenges in modeling black hole seeding, dynamics, accretion, and feedback; (2) novel numerical hyper-refinement techniques that enable explicit modeling of AGN fueling and feedback from sub-parsec to circumgalactic medium scales; and (3) prospects for constraining theoretical models using observations from the nearby universe to the high-redshift frontier.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Stefano Carniani</span><span class="invited-badge">Invited</span></div><div class="talk-title">AGN feedback across cosmic time: from cosmic noon to reionization with JWST<span class="chevron">▼</span></div></summary><div class="talk-abstract"><p>The epoch at z~3–6 marks a critical phase in galaxy evolution, when rapid transformations precede the peak of cosmic star formation and AGN activity. A key mechanism regulating this evolution is AGN feedback, though its impact at early times remains uncertain. Using JWST/NIRSpec IFU observations, I will present a study of AGN-driven outflows at high redshift. At z~3–6, we analyze a large spatially resolved sample of AGNs, mapping rest-frame optical mission lines to identify fast outflows and constrain their properties. We investigate their connection with both host galaxy properties and AGN luminosity, assessing their potential to regulate star formation.
+We extend this analysis to the epoch of reionization, presenting new observations of the most distant quasars. These reveal powerful outflows on both nuclear and galactic scales, with mass outflow rates comparable to star formation rates, indicating that efficient feedback is already in place at very early times.
+Finally, we place these results in a broader evolutionary context by comparing outflow properties across redshift and luminosity, and by examining the evolution of the black hole–stellar mass relation, whose increasing scatter at high redshift may reflect the bursty growth of both black holes and their host galaxies. Together, these findings constrain the onset and role of AGN feedback in shaping the earliest massive galaxies.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Benjamin Vigneron</span></div><div class="talk-title">Resolving the Hidden Kinematics of Galaxy Cluster Filaments: Implications for SMBH Feeding and Feedback<span class="chevron">▼</span></div><div class="talk-affil">Université de Montréal</div></summary><div class="talk-abstract"><p>We present new constraints on the role of optical filamentary nebulae in the feeding and feedback cycle of supermassive black holes (SMBHs) in galaxy clusters, based on ultra-high spectral resolution Gemini/GHOST (R = 60,000) spectroscopy and archival CFHT/ESPaDOnS spectro-polarimetric observations (R = 68,000) of the brightest cluster galaxies NGC 4696 and NGC 1275. In these systems, SMBH-driven AGN feedback globally suppresses cooling of the hot (∼10⁷ K) X-ray emitting intra-cluster medium (ICM), while simultaneously allowing the formation and survival of cooler (∼10⁴ K) ionized filaments that may act as both feedback tracers and potential fuel reservoirs.</p><p>By targeting key regions along the filaments, we resolve the main optical emission lines (Hα, [O III], [N II] and [S II]) into multiple, previously unresolved kinematic components. We detect extremely narrow emission features with velocity dispersions below 40 km s⁻¹ embedded within broader line profiles, revealing a complex superposition of structures spanning a wide dynamical range. These results thus explore the coexistence of inner turbulent, AGN-coupled gas and outer dynamically quiescent filaments that may represent shielded material within the cluster core.</p><p>Combining kinematic analysis with line-ratio diagnostics, we probe the physical conditions and ionization mechanisms of the filaments’ gas, and present the first polarimetric constraints on optical filaments within the Perseus cluster using ESPaDOnS polarimetric measurements. Together, these observations reveal a clear dichotomy between inner and outer filaments in both kinematics and ionization state, suggesting distinct roles in the AGN feedback loop from direct interaction with SMBH-driven outflows and radio bubbles to more quiescent structures associated with multiphase cooling. Our study thus demonstrates that ultra-high spectral resolution spectroscopy provides a powerful new avenue for directly linking the microphysics of cold filamentary gas to the macroscopic regulation of SMBH feeding and feedback in galaxy clusters.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Camille Poitras</span></div><div class="talk-title">From jet to filaments: a multi-scale and multi-wavelength view of AGN activity in M87<span class="chevron">▼</span></div><div class="talk-affil">Université Laval</div></summary><div class="talk-abstract"><p>Active galactic nuclei (AGN) can launch relativistic jets that inject and redistribute energy in their surroundings. As the nearest brightest cluster galaxy in a cool-core cluster, M87 provides a unique laboratory to trace these processes in detail. In this talk, I will first present new constraints on the expansion of its well-known jet in X-rays with Chandra HRC-I, where emission from short-lived synchrotron electrons traces regions near ongoing particle acceleration. The sub-arcsecond imaging capability of HRC-I, combined with a 13-year baseline, enables measurements of proper motions and flux variability of individual knots, constraining their velocities, cooling behavior, and temporal evolution in a multi-wavelength context. On larger scales, jet-driven energy influences the extended warm filamentary nebula in M87. Using new integral-field spectroscopy observations from MEGARA (GTC) and SITELLE (CFHT), we provide the first complete views of its kinematics and excitation across the entire network. The gas exhibits turbulent motions and AGN-dominated excitation, and shows strong coupling to both the cold molecular phase and the cooler component of the hot intracluster medium. Together, these results provide new insight into AGN feedback across spatial scales, wavelengths, and timescales.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Hannah Dykaar</span></div><div class="talk-title">Uncovering Radio-Bright Tidal Disruption Events with ASKAP and the VLA<span class="chevron">▼</span></div><div class="talk-affil">McGill University</div></summary><div class="talk-abstract"><p>Tidal disruption events (TDEs) occur when a star ventures sufficiently close to a supermassive black hole, causing tidal forces to overcome the star&#x27;s self-gravity. Radio observations can probe the size and velocity of these outflows as well as the density of the surrounding environment. Historically identified through shorter-wavelength observations, TDEs have benefited from recent advances in radio interferometry. In particular, the Australian Square Kilometre Array Pathfinder (ASKAP) and the Very Large Array (VLA), have ushered in a new era for TDE detection and follow-up. In this talk, I will present results from the first untargeted radio search for TDEs conducted with the recently completed Variables and Slow Transients (VAST) Pilot Survey from ASKAP. Unlike previous studies that relied on optical or X-ray discovery, our search identifies TDE candidates directly from radio variability and nuclear localization. We identify twelve radio-bright candidate TDEs, implying a volumetric rate of ~0.8 Gpc⁻³ yr⁻¹, consistent with previous empirical estimates. This is the first constraint on the TDE rate derived from an untargeted radio survey. I also present a multiwavelength study of AT2022dbl, a repeating partial TDE, in which the stellar core survives the initial disruption and is subsequently disrupted again. Radio follow-up with the VLA places constraints on the density of the environment surrounding the central black hole. This analysis allows for the exploration of potential emission mechanisms and situates AT2022dbl within the broader context of TDEs, enhancing our understanding of partial TDEs and properties of their associated outflows. Together, these results demonstrate how wide-field radio surveys and detailed multiwavelength follow-up can jointly advance our understanding of TDE demographics, energetics, and outflow physics.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Hyunseop Choi</span></div><div class="talk-title">Mapping the Surrounding Ionized Gas of a Windy z &gt; 6 Quasar with JWST/NIRSpec IFU<span class="chevron">▼</span></div><div class="talk-affil">University of Michigan</div></summary><div class="talk-abstract"><p>Quasars at z &gt; 6 offer a unique opportunity to study supermassive black hole (SMBH) growth and feedback during the first billion years of cosmic history. I present new JWST/NIRSpec IFU observations of z ~ 6 quasars, focusing on J0923+0402 (z ~ 6.6), the highest-redshift BAL quasar with robust constraints on its outflow properties and the first laboratory where multiscale and multiphase quasar winds have been characterized through combined near-IR and sub-mm observations. This object hosts a powerful, warm-ionized BAL outflow near the center, with a much more extended cold-neutral outflow extending to kiloparsec scales.</p><p>Recent NIRSpec/IFU data provided the first spatially resolved view of rest-frame optical emission lines (e.g., [OIII], Balmer) in this windy quasar at cosmic dawn. We observed spatially extended warm ionized gas across kiloparsec scales and complex kinematics that directly connect the nuclear BAL wind to the host galaxy environment. When interpreted together with existing ALMA [C II] observations tracing neutral outflows and an extended halo, the JWST data revealed a complex, multiscale, and multiphase interaction between quasar-driven winds and the surrounding interstellar and circumgalactic media, only about ~1 Gyr after the Big Bang.</p><p>I will discuss the coupling between compact BAL winds and galaxy-scale gas, the potential origin of extended emission-line regions, and the role of early SMBH feedback and inflow onto the SMBH in shaping the surrounding environment. I will also briefly present results from additional NIRSpec/IFU observations of z &gt; 6 quasars, including one located in a galaxy overdensity and another showing strong BAL-driven winds.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Jaeden Bardati</span></div><div class="talk-title">Spectral Predictions from a Super-Eddington Quasar Simulation Zoomed in to Innermost Stable Orbit<span class="chevron">▼</span></div><div class="talk-affil">Caltech</div></summary><div class="talk-abstract"><p>Understanding how rapidly accreting SMBHs connect to their small-scale inflow to galactic-scale environments is central to models of early SMBH growth. I will present the first observational predictions from a fully self-consistent radiation-magnetohydrodynamics zoom-in simulation that follows a super-Eddington AGN continuously from cosmological scales down to the innermost stable circular orbit, as well as the first predictions from magnetically-dominated accretion disks. I will focus on three key results: (1) the inferred structure of the dust torus and infrared (IR) spectral emission, (2) the full rest-frame UV-to-IR emission including the host galaxy starburst contribution, and (3) the physical nature of the broad line region. Overall, the system enters an IR-bright phase early in its evolution, driven by both intense star formation and AGN heating, yielding combined spectra reminiscent of a high-redshift, lower-luminosity hot dust obscured galaxy (hot DOG). Strong anisotropy in the reprocessed emission near the torus produces substantial sightline variations, including changes to the IR slope and potential misclassifications of the underlying galaxy/AGN. These results help bridge the gap between small-scale accretion physics and the large-scale observational appearance of rapidly growing quasars.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Jonathan Mercedes Feliz</span></div><div class="talk-title">Fueling, Winds, and Self-Regulation: SMBH Growth and Feedback from Cosmic Noon to the Local Universe with the FIRE simulations<span class="chevron">▼</span></div><div class="talk-affil">University of Connecticut</div></summary><div class="talk-abstract"><p>Feedback from active galactic nuclei (AGN), powered by gas accretion onto supermassive black holes (SMBHs), is widely invoked as a key regulator of star formation in massive galaxies. However, the coupling between sub-kpc fueling, time-variable accretion, and multiphase outflows is hard to isolate observationally and difficult to capture in a single theoretical framework. High-resolution FIRE cosmological hydrodynamic simulations with a multiphase interstellar medium and explicit SMBH accretion and feedback models make it possible to follow these connections in time, from the gas supply in the circumgalactic medium (CGM) to nuclear inflow and the launching and impact of winds. In this presentation, I will summarize recent results focusing on three regimes that highlight the diversity of fueling and feedback across mass scale and cosmic time, from massive galaxies at their peak activity to Seyfert galaxies in the local universe. (1) I will first present a new nuclear fueling channel driving luminous quasars at cosmic noon based on the large pileup of gas in the inner CGM produced by a global galactic outflow that later reaccretes coherently onto the galaxy, resulting in significantly higher inflow rates than pre-outflow conditions that can directly supply the nuclear region and trigger a luminous quasar phase.  (2) I will then show that the resulting powerful AGN-driven winds can carve central cavities and suppress star formation in massive galaxies at cosmic noon primarily by preventing gas accretion into the ISM rather than by ejecting the existing star-forming gas reservoir. At the same time, strong AGN wind–ISM interactions can locally compress gas and result in positive feedback, including the rapid formation of ultra-dense, off-center stellar clumps. (3) Finally, I will discuss fueling and feedback self-regulation in simulations of Seyfert-like galaxies at low redshift, where we identify recurrent cycles linking increased inflow toward the accretion disk, enhanced SMBH accretion, feedback-driven clearing of the nuclear region, and subsequent re-fueling on ~10–100 Myr timescales. Comparisons to the observed connection between AGN luminosity and nuclear gas deficit provide direct constraints on the characteristic spatial and temporal scales of SMBH self-regulation.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Marine Prunier</span></div><div class="talk-title">AGN Feedback Signatures in Cosmological Simulations<span class="chevron">▼</span></div><div class="talk-affil">UdeM</div></summary><div class="talk-abstract"><p>AGN feedback plays a central role in shaping the thermodynamic structure of galaxy clusters, driving multiphase outflows that redistribute energy and metals across the intracluster medium (ICM). Capturing these complex processes in cosmological simulations is challenging, particularly the generation of observable small, kiloparsec-scale signatures such as X-ray cavities, shocks, and sound waves. In this talk, I will review recent advances in state-of-the-art cosmological simulations in reproducing AGN-driven structures that impact the hot ICM on kiloparsec scales. I will discuss methodologies for consistently comparing X-ray cavities and weak shocks in simulations with observations. Finally, I will highlight two key implications of these advancements. First, opening a new observational window to study the role of AGN feedback in a full cosmological context; and second, demonstrating that careful comparisons between these small-scale X-ray structures in simulations and observations are essential for validating SMBH subgrid models.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Mark Voit</span></div><div class="talk-title">Magnetohydrodynamic Precipitation<span class="chevron">▼</span></div><div class="talk-affil">Michigan State University</div></summary><div class="talk-abstract"><p>Circumgalactic gas generally has a volume-filling component---an atmosphere---with a temperature determined by the potential-well depth of the confining halo. If the atmosphere is near hydrostatic equilibrium and is stable to convection, then it can remain nearly homogeneous, as long as it is not too dense. But if its density is great enough, it becomes prone to producing a rain of cold clouds that fall toward the galaxy&#x27;s center. I will explain how relatively weak magnetic fields enhance a galactic atmosphere&#x27;s tendency to produce cold clouds, organize the cooling gas into vertically elongated, highly magnetized filaments, and apply torques that aid accretion of cooling gas onto the central black hole.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Mike McDonald</span></div><div class="talk-title">A Dynamically-Induced Stellar Cavity in the Center of a Giant Elliptical Galaxy<span class="chevron">▼</span></div><div class="talk-affil">MIT</div></summary><div class="talk-abstract"><p>In this talk I will present evidence for a kpc-wide cavity in the stellar distribution at the center of a giant elliptical galaxy. The cavity, which has a total mass in stars and dark matter of nearly 10^10 Msun, must have been created by a dynamical interaction with merging supermassive black holes. We show evidence that the cavity is flanked on either side by actively accreting SMBHs, with a combined mass of sixty billion solar masses, which may be in the early stages of scouring a central core in the galaxy. Alternative explanations could be a post-merger recoil leading to stellar orbits expanding, or the creation of a dipole instability in the stellar distribution during inspiral. Regardless of the mechanism, this system represents an extreme case of merging SMBHs causing a temporary, but dramatic, redistribution of stars in the galaxy center.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Nhut Truong</span></div><div class="talk-title">Are AGN Feedback Models Too Ejective? Insights from XRISM velocity measurements<span class="chevron">▼</span></div><div class="talk-affil">NASA Goddard Space Flight Center/UMBC</div></summary><div class="talk-abstract"><p>Recent XRISM Resolve observations provide the first high-precision measurements of gas motions in galaxy clusters beyond Perseus, offering a new window into the impact of supermassive black hole (SMBH) feedback on the intra-cluster medium (ICM). In this talk, I will present a comparison between XRISM velocity measurements in nine clusters and predictions from three state-of-the-art cosmological simulation suites (TNG-Cluster, The Three Hundred GADGET-X, and GIZMO-SIMBA), each implementing different SMBH feedback models. In cluster cool cores, XRISM measurements suggest systematically lower levels of kinetic support than predicted by current models, pointing to potential tensions in how feedback-driven outflows are implemented. Outside cool cores, the level of agreement appears improved, although particularly relaxed systems such as A2029 present intriguing cases. These results demonstrate the power of XRISM to place direct kinematic constraints on cluster-scale SMBH feedback. I will discuss the possible origins of the emerging tensions and their implications for current implementations of feedback in cosmological simulations.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Niel Brandt</span></div><div class="talk-title">Galaxies and Their Black Holes: Tracing and Harnessing a Cosmic Partnership<span class="chevron">▼</span></div><div class="talk-affil">Penn State University</div></summary><div class="talk-abstract"><p>Supermassive black holes (SMBHs) and galaxies grow together over cosmic time, but the physical drivers of this joint evolution and SMBH feeding remain an open question. In this talk, I will summarize a statistical, population-based approach that links long-term SMBH growth to measurable galaxy properties. The key observable we use is the sample-averaged SMBH accretion rate (BHAR), inferred from sensitive X-ray surveys and interpreted as the long-term growth of SMBH populations. We compare BHAR against well-studied galactic quantities - including stellar mass, star-formation rate, and structural compactness - using large, well-controlled samples (millions of galaxies and thousands of active galactic nuclei) and partial-correlation methods that isolate the dominant connections.</p><p>Some broad conclusions are the following: (1) across z = 0-4 the generally strongest predictor of SMBH feeding and growth is galaxy stellar mass; (2) in systems dominated by a bulge component, the SMBH accretion rate tracks star formation closely, indicating synchronized SMBH and bulge growth; and (3) among star-forming galaxies, more compact systems show enhanced BHAR, plausibly because higher central gas densities feed accretion more efficiently. I will also describe how these empirical correlations can be folded into cosmological simulations to map SMBH mass assembly - via both accretion and mergers - and to explore consequences such as the evolving SMBH mass function, SMBH-galaxy scaling relations, feedback effects, and the drivers of the strong decline in SMBH accretion at z &lt; 2.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Ruxin Barré</span></div><div class="talk-title">Forged by Feedback: How AGN Feedback Models Shape Brightest Group Galaxies in Cosmological Simulations<span class="chevron">▼</span></div><div class="talk-affil">University of Victoria</div></summary><div class="talk-abstract"><p>While most modern galaxy formation models can successfully reproduce global galaxy population statistics, many continue to struggle with capturing the properties and evolution of the most massive galaxies. These discrepancies are increasingly understood to arise from the modelling of active galactic nucleus (AGN) feedback and its critical role in regulating gas cooling and star formation. It therefore remains crucial to assess and refine the physical realism of AGN feedback prescriptions in cosmological simulations. Brightest group galaxies (BGGs), residing at the centres of galaxy groups, are shaped by supermassive black hole (SMBH)-driven cycles of heating and cooling, which provides an ideal laboratory for testing AGN feedback models. We use BGGs as probes of feedback physics, investigating their stellar properties across multiple cosmological simulations with distinct implementations of AGN feedback: purely thermal feedback in ROMULUS, differing calibrations of two-regime kinetic feedback in SIMBA and SIMBA-C, and the sophisticated, three-regime OBSIDIAN feedback model, which directly maps accretion flow geometry to the properties of SMBH-driven outflows. Our results reveal that the global properties and inferred quenching pathways of the simulated BGGs are highly sensitive to the strength and mechanism of their respective AGN feedback model. We contrast these predictions against observed BGGs in X-ray-selected COSMOS groups and find that the OBSIDIAN model achieves the highest agreement with observations, reproducing stellar property distributions, quenched fractions, and the evolution of star formation in increasingly massive systems. We find evidence that the OBSIDIAN and COSMOS BGG populations quench via a gradual decline in star formation with increasing stellar mass. This contrasts SIMBA and SIMBA-C, which exhibit rapid quenching linked to the onset of powerful jet feedback, and ROMULUS, whose thermal feedback cannot sufficiently suppress star formation. These results provide critical constraints for refining models of AGN feedback, with the success of OBSIDIAN signalling the start of a new generation of simulations with increasingly realistic depictions of SMBHs and their impact on galaxy evolution.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Shalini Kurinchi-Vendhan</span></div><div class="talk-title">Supermassive Black Hole Feedback in Dense, Multiphase, and High-Redshift Cosmological Environments from the IllustrisTNG Universe<span class="chevron">▼</span></div><div class="talk-affil">MPIA-UCSD</div></summary><div class="talk-abstract"><p>Supermassive black holes (SMBHs) and their host galaxies evolve in tandem, with active galactic nuclei (AGN) feedback playing a critical role in regulating galaxy growth. Nevertheless, the significance of SMBHs across different galaxy environments and cosmic epochs lacks consensus, especially as high-redshift observations challenge our state-of-the-art galaxy formation models. We leverage the IllustrisTNG cosmological simulations to investigate the co-evolution of SMBHs and galaxies, focusing on massive galaxies that undergo extreme transformations in dense cosmological environments as well as those that are quenched in the high-redshift Universe. We find that z ≈ 0 satellite galaxies that are stripped of their gas during infall into galaxy clusters exhibit elevated AGN fractions, indicating that extreme environments can enhance SMBH activity. At z ≳ 3, AGN feedback emerges as the dominant mechanism suppressing star formation in massive galaxies, where rapid SMBH growth and the early onset of kinetic feedback efficiently deplete cold gas reservoirs. Finally, motivated by recent observational evidence for massive black holes at redshifts z ≳ 5, we present new cosmological zoom-in simulations of galaxies with a resolved, multiphase interstellar medium to investigate black hole accretion and feedback during the first billion years of the Universe. Together, our results highlight the role of SMBHs as drivers of galaxy evolution across diverse environments and cosmic times.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Valeria Olivares</span></div><div class="talk-title">The Many Phases of Filaments in Cooling-Flow Clusters<span class="chevron">▼</span></div><div class="talk-affil">Universidad de Santiago de Chile</div></summary><div class="talk-abstract"><p>Galaxy cluster cores are exceptional laboratories for probing the baryon cycle that regulates galaxy evolution and active galactic nucleus (AGN) feedback. They provide a unique window into how the intracluster medium (ICM) cools, fuels central galaxies, sustains star formation, and ultimately triggers feedback from the Universe’s most massive black holes. In this talk, I present a newly identified correlation between the surface brightness of the hot and warm gas phases within filamentary structures in cluster centers, based on MUSE, SITELLE, and Chandra observations. Remarkably, this correlation closely resembles those observed in the tails of jellyfish galaxies, revealing an unexpected connection between cluster-scale filaments and ram-pressure-stripped systems. I further demonstrate that AGN feedback plays a crucial role in shaping the filaments morphology, pressure balance, and metallicity, highlighting their dynamic, multiphase nature. Finally, I present new high-resolution ALMA observations of a filament in the Perseus cluster to investigate the impact of AGN feedback on cold molecular clouds and their potential for star formation.</p></div></details></div>
+</div>
+<footer class="site-footer">
+  <div class="star-deco">&#11819; &nbsp; &#9679; &nbsp; &#11819;</div>
+  <p>19 talks &middot; 2 invited &middot; <a href="index.html">All days</a></p>
+  <p style="margin-top:0.3rem">Tap any talk to expand its abstract</p>
+</footer>
+</body>
+</html>

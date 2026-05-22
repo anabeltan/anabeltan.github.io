@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#160A0A">
+<title>SMBH 2026 — Friday, July 3, 2026</title>
+<style>
+:root{--bg:#160A0A;--panel:#221010;--panel2:#2D1A1A;--accent:#E07070;--glow:#F5C8A8;--text:#FDF0F0;}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  min-height:100vh;
+}
+
+/* ---- Header ---- */
+.site-header{
+  background:var(--panel2);
+  border-bottom:2px solid var(--accent);
+  padding:0.9rem 1rem 0.75rem;
+  position:sticky;top:0;z-index:200;
+}
+.site-header .conf-name{
+  font-size:0.7rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--glow);margin-bottom:0.15rem;
+}
+.site-header .day-name{
+  font-size:1.55rem;font-weight:800;color:#fff;line-height:1.15;
+}
+.site-header .day-date{
+  font-size:0.82rem;color:var(--accent);margin-top:0.1rem;
+}
+.site-header .star-row{
+  font-size:0.65rem;letter-spacing:0.18em;color:var(--accent);
+  opacity:0.5;margin-top:0.3rem;
+}
+
+/* ---- Day navigation ---- */
+.day-nav{
+  display:flex;gap:0.4rem;
+  padding:0.6rem 0.75rem;
+  background:var(--bg);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.day-nav::-webkit-scrollbar{display:none}
+.day-nav a{
+  flex-shrink:0;
+  padding:0.3rem 0.7rem;
+  border-radius:20px;
+  font-size:0.78rem;font-weight:600;
+  text-decoration:none;
+  color:rgba(255,255,255,0.6);
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:background 0.15s,color 0.15s;
+}
+.day-nav a.active{
+  background:var(--accent);
+  color:#07111F;
+  border-color:var(--accent);
+  font-weight:700;
+}
+.day-nav a:hover:not(.active){
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+}
+
+/* ---- Container ---- */
+.container{max-width:640px;margin:0 auto;padding:0 0.75rem 3rem}
+
+/* ---- Theme section ---- */
+.theme-section{margin-top:1.6rem}
+.theme-header{
+  display:flex;align-items:flex-start;gap:0.55rem;
+  padding:0.55rem 0.85rem;
+  border-radius:8px;
+  background:var(--panel);
+  margin-bottom:0.75rem;
+  border-left:3px solid var(--t-accent);
+}
+.theme-num{
+  font-size:0.68rem;font-weight:700;
+  color:var(--t-accent);
+  letter-spacing:0.06em;text-transform:uppercase;
+  white-space:nowrap;margin-top:0.1rem;
+}
+.theme-label{font-size:0.83rem;font-weight:600;color:var(--glow)}
+
+/* ---- Talk card ---- */
+.talk-card{
+  background:var(--panel);
+  border-radius:10px;
+  margin-bottom:0.55rem;
+  border:1px solid rgba(255,255,255,0.07);
+  overflow:hidden;
+}
+.talk-card summary{
+  padding:0.8rem 0.9rem 0.75rem;
+  cursor:pointer;
+  list-style:none;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.talk-card summary::-webkit-details-marker{display:none}
+.talk-card[open] summary{border-bottom:1px solid rgba(255,255,255,0.07)}
+.talk-top{
+  display:flex;align-items:center;justify-content:space-between;gap:0.5rem;
+  margin-bottom:0.3rem;
+}
+.talk-speaker{font-weight:700;font-size:0.95rem;color:#fff}
+.invited-badge{
+  flex-shrink:0;
+  font-size:0.62rem;font-weight:700;
+  padding:0.12rem 0.42rem;border-radius:12px;
+  background:rgba(200,146,42,0.18);
+  color:#C8922A;
+  border:1px solid rgba(200,146,42,0.45);
+  letter-spacing:0.05em;text-transform:uppercase;
+}
+.talk-title{
+  font-size:0.87rem;color:var(--glow);line-height:1.4;
+  padding-right:1.4rem;
+  position:relative;
+}
+.chevron{
+  position:absolute;right:0;top:0.1rem;
+  font-size:0.65rem;color:var(--accent);
+  transition:transform 0.2s;
+}
+details[open] .chevron{transform:rotate(180deg)}
+.talk-abstract{
+  padding:0.7rem 0.9rem 0.9rem;
+  font-size:0.82rem;
+  color:rgba(255,255,255,0.68);
+  line-height:1.65;
+}
+.talk-abstract p+p{margin-top:0.6rem}
+.talk-affil{
+  font-size:0.74rem;
+  color:rgba(255,255,255,0.38);
+  margin-top:0.15rem;
+}
+
+/* ---- Empty day ---- */
+.empty-day{
+  margin-top:2rem;
+  text-align:center;
+  color:rgba(255,255,255,0.3);
+  font-size:0.9rem;
+  font-style:italic;
+}
+
+/* ---- Footer ---- */
+.site-footer{
+  margin-top:2.5rem;
+  padding:1.2rem 1rem 2rem;
+  border-top:1px solid rgba(255,255,255,0.06);
+  text-align:center;
+}
+.site-footer .star-deco{
+  font-size:0.7rem;letter-spacing:0.2em;
+  color:var(--accent);opacity:0.4;margin-bottom:0.6rem;
+}
+.site-footer p{font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.7}
+.site-footer a{color:var(--accent);text-decoration:none}
+
+/* ---- Index page ---- */
+.index-hero{
+  padding:2.5rem 1rem 2rem;text-align:center;
+}
+.index-hero h1{
+  font-size:2rem;font-weight:800;color:#fff;
+}
+.index-hero .subtitle{
+  font-size:0.95rem;color:var(--glow);margin-top:0.4rem;font-style:italic;
+}
+.index-hero .dates{
+  font-size:0.85rem;color:var(--accent);margin-top:0.5rem;
+}
+.day-grid{
+  max-width:480px;margin:0 auto;
+  padding:0 0.75rem 3rem;
+  display:flex;flex-direction:column;gap:0.75rem;
+}
+.day-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.2rem;
+  border-radius:12px;
+  text-decoration:none;
+  background:var(--panel2);
+  border:1px solid rgba(255,255,255,0.08);
+  transition:border-color 0.15s,background 0.15s;
+}
+.day-btn:hover{
+  border-color:var(--accent);
+  background:var(--panel);
+}
+.day-btn-left .day-name-big{
+  font-size:1.1rem;font-weight:700;color:#fff;
+}
+.day-btn-left .day-date-small{
+  font-size:0.78rem;color:var(--accent);margin-top:0.1rem;
+}
+.day-btn-right{
+  font-size:0.7rem;color:rgba(255,255,255,0.3);
+}
+.talk-count-badge{
+  font-size:0.72rem;font-weight:600;
+  padding:0.2rem 0.55rem;border-radius:20px;
+  background:rgba(255,255,255,0.07);
+  color:rgba(255,255,255,0.45);
+}
+
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="conf-name">SMBH 2026 · Montr&eacute;al</div>
+  <div class="day-name">Friday</div>
+  <div class="day-date">July 3, 2026</div>
+  <div class="star-row">&#9733; &nbsp; &#9679; &nbsp; &#9733; &nbsp; &#9679; &nbsp; &#9733;</div>
+</header>
+<nav class="day-nav"><a href="day1.html" class="">Monday</a><a href="day2.html" class="">Tuesday</a><a href="day3.html" class="">Wednesday</a><a href="day4.html" class="">Thursday</a><a href="day5.html" class="active">Friday</a></nav>
+<div class="container">
+<div class="theme-section"><div class="theme-header" style="--t-accent:#5FA8B8"><span class="theme-num">Theme 2</span><span class="theme-label">Black Hole Growth and AGN Feedback</span></div><details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Sera Markoff</span><span class="invited-badge">Invited</span></div><div class="talk-title">A multi-messenger view of black holes in the event horizon-scale imaging era<span class="chevron">▼</span></div><div class="talk-affil">API/GRAPPA, University of Amsterdam and IoA/KICC, University of Cambridge</div></summary><div class="talk-abstract"><p>The last decade has witnessed spectacular developments in astrophysics and astroparticle physics, not least of which is the ability to directly image two supermassive black holes with global very long baseline interferometry (VLBI) project the Event Horizon Telescope (EHT). But how do these images connect to broader questions regarding the workings of accretion in general, or the launching of jets and particle acceleration, common to a wide variety of astrophysical phenomena? In this talk I will review how the combination of horizon-scale imaging with multi-wavelength and multi-messenger data, together with recent advances in theoretical modelling, have the potential to tackle some of the hairiest problems relating to black holes and compact objects in general. In particular I will discuss some recent results from the EHT multi-wavelength campaigns, as well as the theoretical interpretation and challenges so far. I will also try to give some perspective on what is (literally) on the horizon in the coming decade, as we move into an era of dynamical imaging and EHT-expansion projects, as well as science with the next-generation very-high-energy gamma-ray facility the Cherenkov Telescope Array Observatory and upgraded neutrino facilities, as well as GRAVITY+.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Olmo Piana</span></div><div class="talk-title">Spinning supermassive black holes<span class="chevron">▼</span></div><div class="talk-affil">University of Modena and Reggio Emilia</div></summary><div class="talk-abstract"><p>Supermassive black hole (SMBH) spin is a central—but still poorly constrained—ingredient in the co-evolution of black holes, galaxies, and their gaseous halos. In the Blandford–Znajek paradigm, spin regulates the efficiency with which magnetic fields extract rotational energy to power relativistic jets, while the angular momentum of the inflowing gas simultaneously drives spin-up/spin-down and reorientation. This tight, two-way coupling suggests that spin should be treated as an active dynamical variable in the SMBH feeding–feedback loop, particularly in the chaotic cold accretion (CCA) regime where cold clouds and filaments deliver rapidly varying, three-dimensional torques.</p><p>We present a project aimed at modelling SMBH spin evolution self-consistently in CCA by bridging the gap between horizon-scale relativistic constraints and the multiphase gas cycle on galactic and group scales. Using the GPU-accelerated, AMR MHD code AthenaPK, we perform group/cluster-size simulations that resolve the thermodynamic pathways to condensation and follow cold inflow down to parsec scales. We then couple the resolved, time-dependent inflow angular momentum to general-relativistic prescriptions at the innermost stable circular orbit, enabling a physically motivated closure for the mass-energy and angular momentum transferred to the hole. Alongside this fiducial “Hybrid” approach, we implement controlled benchmark variants to quantify how unresolved circularization physics impacts spin evolution and jet variability.</p><p>This framework is designed to deliver predictive connections between CCA statistics, spin-driven jet power and direction, and the emergent duty cycle of feedback—relevant to misaligned cavities, restarted radio galaxies, and future spin constraints. The work is developed within the ERC-funded BlackHoleWeather project.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Rohan Dahale</span></div><div class="talk-title">Horizon-scale dynamics in the accretion flow of the supermassive black hole in Sagittarius A*<span class="chevron">▼</span></div><div class="talk-affil">University of Toronto</div></summary><div class="talk-abstract"><p>The Event Horizon Telescope (EHT) has imaged the time-averaged structure of the black hole at the Galactic Center, Sagittarius A* (Sgr A*), but resolving its temporal evolution enables fundamentally new science: directly observing how matter accretes onto the black hole and how plasma structures evolve on minute timescales near the event horizon. This provides tests of accretion physics impossible from static images alone. However, Sgr A*&#x27;s rapid variability on timescales of minutes, combined with sparse interferometric coverage, makes dynamic imaging extremely challenging.</p><p>We now aim to spatially resolve the time evolution of Sgr A* by reconstructing a minute-by-minute video of the black hole&#x27;s immediate surroundings at horizon scale using April 11, 2017 EHT observations; the best dataset from the 2017 campaign, providing ~3 hours of continuous coverage with ten simultaneous baselines. This day exhibited pronounced multi-wavelength variability: an X-ray flare (Chandra/NuSTAR) immediately before EHT observations, Q-U loops in ALMA polarimetric light curves, and quasi-periodic oscillations in EHT visibility-domain polarization, all suggesting coherent dynamics in the accretion flow.</p><p>To extract robust videos, we developed: (1) Multiple independent dynamic imaging algorithms using complementary approaches (neural fields, Bayesian inference, optimal transport regularization); (2) A comprehensive validation framework that rigorously tests whether these algorithms distinguish genuine astrophysical motion from reconstruction artifacts, using synthetic datasets ranging from simple geometric models to complex GRMHD simulations.</p><p>These validated reconstructions will reveal horizon-scale accretion dynamics and enable direct measurements of rotational plasma velocities and evolving brightness structures. Combined with multi-wavelength observations following the X-ray flare, this provides constraints on magnetic field geometry, plasma flow properties, and flare generation mechanisms. This work establishes a new observational frontier for understanding the physical processes driving variability in low-luminosity black hole accretion and testing theoretical predictions in the strong-gravity regime.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Andrew Chael</span><span class="invited-badge">Invited</span></div><div class="talk-title">What Have We Learned from Black Hole Images? 
+Comparing Simulations to EHT Data.<span class="chevron">▼</span></div><div class="talk-affil">Niels Bohr Institute</div></summary><div class="talk-abstract"><p>The Event Horizon Telescope has now repeatedly imaged structure on the scales of the Schwarzschild radii in the two supermassive black hole sources with the largest angular size; M87* and Sgr A* in full polarization over several years. All EHT images of these black holes show characteristic rings of light produced by synchrotron emission from the extremely hot, magnetized plasma near the black hole horizon, with stable radii consistent with the predicted radius of the theoretical black hole ‘shadow.’ In this talk, I will review what the first generation of black hole images have told us about the extreme environments around supermassive black holes. General Relativistic Magnetohydrodynamic (GRMHD) simulations of low-luminosity accretion flows are strikingly consistent with the EHT’s images of both Sgr A* and M87*, despite a difference of three orders of magnitude in black hole mass. Polarized black hole images are strong probes of both the accretion state and plasma thermodynamics around these black holes. EHT images in both linear and circular polarization strongly suggest both that the accretion flows around both Sgr A* and M87* are magnetically arrested with electromagnetic energy flowing outward near the horizon and that electrons in the near-horizon plasma are significantly cooler than ions. Ongoing advances in EHT observations with higher sensitivity and extended time baselines have potential to constrain the launching mechanism of the relativistic jet in M87* and probe the dynamics of plasma near the event horizon. In particular, unexpected variability in the polarized images of M87* now posing a challenge to our otherwise-successful simulation models.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Michael Johnson</span><span class="invited-badge">Invited</span></div><div class="talk-title">Tracing Light at the Edge of the Universe: the Black Hole Explorer<span class="chevron">▼</span></div></summary><div class="talk-abstract"><p>The Event Horizon Telescope (EHT) has transformed supermassive black holes from theoretical entities into resolved astrophysical laboratories. In this review talk, I will describe the scientific and technical path toward the next major frontier: submillimeter very-long-baseline interferometry from space. I will focus on ongoing efforts to develop the Black Hole Explorer (BHEX), a mission designed to produce the sharpest images in the history of astronomy by extending the EHT into space. BHEX will reveal the bright, narrow &quot;photon ring&quot; predicted to appear in black hole images, formed by light that has orbited the black hole before escaping to Earth. This measurement will provide a new probe of black hole spacetime and enable direct measurements of a supermassive black hole&#x27;s spin. BHEX will also expand horizon-scale studies to dozens of additional supermassive black holes and relativistic jets, illuminating the engines that power some of the brightest and most efficient sources in the universe. I will review the scientific motivation for BHEX, recent progress in mission-enabling technologies, and the pathway toward launch within the next decade.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Boris Georgiev</span></div><div class="talk-title">The observations and science of the first black hole movie on event-horizon scales<span class="chevron">▼</span></div><div class="talk-affil">UArizona</div></summary><div class="talk-abstract"><p>Several years of event-horizon images of a black hole have confirmed persistent strong gravity and a dynamic hot plasma that sources the jets which extend to galactic scales. However, models have a large parameter space and are routinely challenged by source variability, and interpretation is complicated by the entanglement of multiple astrophysical processes. Many open questions remain about the accretion flow, the origin of jet launching and acceleration, the magnetic field structure, the electron thermodynamics, and the origin of high-energy flares. In the spring of 2026, the Event Horizon Telescope will conduct a monitoring campaign of the black hole M87*. These observations will probe 10 to 360 gravitational timescales and are expected to show coherent motion of features on event-horizon scales. Temporal stacking will improve the dynamic range of the diffuse jet, and polarization will inform on the magnetic field. In this talk, I will describe these observations and detail the type of science they will enable. A velocity field promises an identification of the jet-launching region and the mechanism behind bright features, such as plasma hotspots, magnetized flux tubes, or wave-like perturbations. Similarly, magnetohydrodynamical models make strong predictions about the motion of rotating and launched features, allowing observations to more phenomenologically prefer certain mechanisms. Simultaneous multiwavelength observations could offer clues about electron acceleration in the rare chance of a concurrent high-energy flare.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Daryl Haggard</span></div><div class="talk-title">JWST’s First Detections of Mid-IR Flares from Sgr A*<span class="chevron">▼</span></div><div class="talk-affil">McGill University/Trottier Space Institute</div></summary><div class="talk-abstract"><p>Sgr A*, the black hole at the heart of the Milky Way Galaxy, has long been observed as a variable source. It displays high contrast X-ray flares and near-continuous variability at near IR wavelengths. Recently, we’ve detected the first flares at mid-IR wavelengths with the James Web Space Telescope’s MIRI IFU. I will present these new MIR flare detections and place them in the context of variability observed at other wavelengths, including by the EHT/SMA/ALMA (sub-mm), Chandra (X-ray), NuSTAR (hard X-ray) and others. Together these observations offer a deep, multi-wavelength, time-domain view of the closest supermassive black hole and allow us to constrain the physical and radiative processes that are driving variability near the event horizon. This JWST/MIRI program has also led to excellent Galactic Center science at larger scales and I’ll briefly describe improved solutions for Galactic extinction at MIR wavelengths, constraints on an IMBH in the Galactic Center, new abundance measurements for diffuse gas near Sgr A*, and new detections of a GC X-ray transient, MAXI J1744-294.</p></div></details></div>
+</div>
+<footer class="site-footer">
+  <div class="star-deco">&#11819; &nbsp; &#9679; &nbsp; &#11819;</div>
+  <p>7 talks &middot; 3 invited &middot; <a href="index.html">All days</a></p>
+  <p style="margin-top:0.3rem">Tap any talk to expand its abstract</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0A1B25">
+<title>SMBH 2026 — Monday, June 29, 2026</title>
+<style>
+:root{--bg:#0A1B25;--panel:#152433;--panel2:#1A2F3A;--accent:#5AB4CC;--glow:#A8DDE8;--text:#E2F4F9;}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  min-height:100vh;
+}
+
+/* ---- Header ---- */
+.site-header{
+  background:var(--panel2);
+  border-bottom:2px solid var(--accent);
+  padding:0.9rem 1rem 0.75rem;
+  position:sticky;top:0;z-index:200;
+}
+.site-header .conf-name{
+  font-size:0.7rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--glow);margin-bottom:0.15rem;
+}
+.site-header .day-name{
+  font-size:1.55rem;font-weight:800;color:#fff;line-height:1.15;
+}
+.site-header .day-date{
+  font-size:0.82rem;color:var(--accent);margin-top:0.1rem;
+}
+.site-header .star-row{
+  font-size:0.65rem;letter-spacing:0.18em;color:var(--accent);
+  opacity:0.5;margin-top:0.3rem;
+}
+
+/* ---- Day navigation ---- */
+.day-nav{
+  display:flex;gap:0.4rem;
+  padding:0.6rem 0.75rem;
+  background:var(--bg);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.day-nav::-webkit-scrollbar{display:none}
+.day-nav a{
+  flex-shrink:0;
+  padding:0.3rem 0.7rem;
+  border-radius:20px;
+  font-size:0.78rem;font-weight:600;
+  text-decoration:none;
+  color:rgba(255,255,255,0.6);
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:background 0.15s,color 0.15s;
+}
+.day-nav a.active{
+  background:var(--accent);
+  color:#07111F;
+  border-color:var(--accent);
+  font-weight:700;
+}
+.day-nav a:hover:not(.active){
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+}
+
+/* ---- Container ---- */
+.container{max-width:640px;margin:0 auto;padding:0 0.75rem 3rem}
+
+/* ---- Theme section ---- */
+.theme-section{margin-top:1.6rem}
+.theme-header{
+  display:flex;align-items:flex-start;gap:0.55rem;
+  padding:0.55rem 0.85rem;
+  border-radius:8px;
+  background:var(--panel);
+  margin-bottom:0.75rem;
+  border-left:3px solid var(--t-accent);
+}
+.theme-num{
+  font-size:0.68rem;font-weight:700;
+  color:var(--t-accent);
+  letter-spacing:0.06em;text-transform:uppercase;
+  white-space:nowrap;margin-top:0.1rem;
+}
+.theme-label{font-size:0.83rem;font-weight:600;color:var(--glow)}
+
+/* ---- Talk card ---- */
+.talk-card{
+  background:var(--panel);
+  border-radius:10px;
+  margin-bottom:0.55rem;
+  border:1px solid rgba(255,255,255,0.07);
+  overflow:hidden;
+}
+.talk-card summary{
+  padding:0.8rem 0.9rem 0.75rem;
+  cursor:pointer;
+  list-style:none;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.talk-card summary::-webkit-details-marker{display:none}
+.talk-card[open] summary{border-bottom:1px solid rgba(255,255,255,0.07)}
+.talk-top{
+  display:flex;align-items:center;justify-content:space-between;gap:0.5rem;
+  margin-bottom:0.3rem;
+}
+.talk-speaker{font-weight:700;font-size:0.95rem;color:#fff}
+.invited-badge{
+  flex-shrink:0;
+  font-size:0.62rem;font-weight:700;
+  padding:0.12rem 0.42rem;border-radius:12px;
+  background:rgba(200,146,42,0.18);
+  color:#C8922A;
+  border:1px solid rgba(200,146,42,0.45);
+  letter-spacing:0.05em;text-transform:uppercase;
+}
+.talk-title{
+  font-size:0.87rem;color:var(--glow);line-height:1.4;
+  padding-right:1.4rem;
+  position:relative;
+}
+.chevron{
+  position:absolute;right:0;top:0.1rem;
+  font-size:0.65rem;color:var(--accent);
+  transition:transform 0.2s;
+}
+details[open] .chevron{transform:rotate(180deg)}
+.talk-abstract{
+  padding:0.7rem 0.9rem 0.9rem;
+  font-size:0.82rem;
+  color:rgba(255,255,255,0.68);
+  line-height:1.65;
+}
+.talk-abstract p+p{margin-top:0.6rem}
+.talk-affil{
+  font-size:0.74rem;
+  color:rgba(255,255,255,0.38);
+  margin-top:0.15rem;
+}
+
+/* ---- Empty day ---- */
+.empty-day{
+  margin-top:2rem;
+  text-align:center;
+  color:rgba(255,255,255,0.3);
+  font-size:0.9rem;
+  font-style:italic;
+}
+
+/* ---- Footer ---- */
+.site-footer{
+  margin-top:2.5rem;
+  padding:1.2rem 1rem 2rem;
+  border-top:1px solid rgba(255,255,255,0.06);
+  text-align:center;
+}
+.site-footer .star-deco{
+  font-size:0.7rem;letter-spacing:0.2em;
+  color:var(--accent);opacity:0.4;margin-bottom:0.6rem;
+}
+.site-footer p{font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.7}
+.site-footer a{color:var(--accent);text-decoration:none}
+
+/* ---- Index page ---- */
+.index-hero{
+  padding:2.5rem 1rem 2rem;text-align:center;
+}
+.index-hero h1{
+  font-size:2rem;font-weight:800;color:#fff;
+}
+.index-hero .subtitle{
+  font-size:0.95rem;color:var(--glow);margin-top:0.4rem;font-style:italic;
+}
+.index-hero .dates{
+  font-size:0.85rem;color:var(--accent);margin-top:0.5rem;
+}
+.day-grid{
+  max-width:480px;margin:0 auto;
+  padding:0 0.75rem 3rem;
+  display:flex;flex-direction:column;gap:0.75rem;
+}
+.day-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.2rem;
+  border-radius:12px;
+  text-decoration:none;
+  background:var(--panel2);
+  border:1px solid rgba(255,255,255,0.08);
+  transition:border-color 0.15s,background 0.15s;
+}
+.day-btn:hover{
+  border-color:var(--accent);
+  background:var(--panel);
+}
+.day-btn-left .day-name-big{
+  font-size:1.1rem;font-weight:700;color:#fff;
+}
+.day-btn-left .day-date-small{
+  font-size:0.78rem;color:var(--accent);margin-top:0.1rem;
+}
+.day-btn-right{
+  font-size:0.7rem;color:rgba(255,255,255,0.3);
+}
+.talk-count-badge{
+  font-size:0.72rem;font-weight:600;
+  padding:0.2rem 0.55rem;border-radius:20px;
+  background:rgba(255,255,255,0.07);
+  color:rgba(255,255,255,0.45);
+}
+
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="conf-name">SMBH 2026 · Montr&eacute;al</div>
+  <div class="day-name">Monday</div>
+  <div class="day-date">June 29, 2026</div>
+  <div class="star-row">&#9733; &nbsp; &#9679; &nbsp; &#9733; &nbsp; &#9679; &nbsp; &#9733;</div>
+</header>
+<nav class="day-nav"><a href="day1.html" class="active">Monday</a><a href="day2.html" class="">Tuesday</a><a href="day3.html" class="">Wednesday</a><a href="day4.html" class="">Thursday</a><a href="day5.html" class="">Friday</a></nav>
+<div class="container">
+<div class="theme-section"><div class="theme-header" style="--t-accent:#C8922A"><span class="theme-num">Theme 1</span><span class="theme-label">Black Hole Demographics and Scaling Relations</span></div><details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Kiana Salehi</span></div><div class="talk-title">Measuring the Shape of Kerr Black Holes at the Photon Orbit<span class="chevron">▼</span></div><div class="talk-affil">Perimeter Institute</div></summary><div class="talk-abstract"><p>The bright ring-like structures observed in the images of M87* and Sgr A* captured by the Event
+Horizon Telescope strongly support the validity of general relativity. Lensed images of the emission
+region, often referred to as photon rings in this context, are a direct consequence of the unstable
+dynamics of null geodesics near the spherical photon orbit in the Kerr spacetime. The order of the
+lensed image can be characterized by the number of half-orbits the photons complete before reaching
+the observer, with higher-order photon rings produced by null geodesics that circle the black hole more
+times. However, low-order rings are significantly influenced by the astrophysical environment. Mea-
+suring the Lyapunov exponent requires probing the exponentially small differences between successive
+photon rings or between photon rings and the shadow. We investigate potential astrophysical sources
+of systematic error the estimation of Lyapunov exponent, including the location of the observed emis-
+sion, and especially at low photon ring order. We show that it is nevertheless possible to measure this
+purely gravitational quantity to roughly 10% and 1% systematic uncertainty by resolving the n = 2
+and n = 3 photon rings with the shadow size, respectively. Therefore, the forthcoming black hole
+imaging efforts to capture, even if indirectly, the n= 2 photon ring can result in a measurement of the
+Lyapunov exponent that is not limited by astrophysical uncertainties.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Kirk Long</span></div><div class="talk-title">Unraveling the broad-line region: novel modeling and deep-learning techniques<span class="chevron">▼</span></div><div class="talk-affil">JILA, University of Colorado Boulder</div></summary><div class="talk-abstract"><p>Active galactic nuclei show considerable line-broadening, an observational hallmark that implies the presence of a supermassive black hole. This broadening implies a characteristic velocity, which, in conjunction with a radial distance measurement—obtained either via reverberation mapping or spectroastrometry—one can estimate the masses of supermassive black holes. But to obtain the most precise masses and unravel the true nature of the broad-line region requires a degree of modeling. We have recently shown that novel models of the BLR are likely required to explain velocity-resolved reverberation data products. In particular, the observed delay and line profiles seem to imply multiple populations of broad line emitting gas with different geometries and kinematics, and we will discuss ongoing efforts to alleviate this tension with multi-component BLR models, enabled by our open-source Julia code BroadLineRegions.jl. We will also showcase a promising deep learning analysis technique for the deconvolution of reverberation mapping data to obtain structural information in the BLR, with applications to similar deconvolution problems in the accretion disk and torus.</p><p>Through these approaches we seek to constrain the true nature of the BLR, what physics can plausibly exist there, and how our choice of model systematically influences our measurements of high level properties such as SMBH mass across cosmic time.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Maggie Huber</span></div><div class="talk-title">Testing Black Hole-Host Galaxy Scaling Relations in SDSS Close Pairs<span class="chevron">▼</span></div><div class="talk-affil">University of Colorado Boulder</div></summary><div class="talk-abstract"><p>Supermassive black holes (SMBHs) and their host-galaxies co-evolve through channels such as hierarchical merging and AGN feedback, establishing tight scaling relations between SMBH masses and properties of the host galaxy. These scaling relations, particularly those with host galaxy bulge mass (Mbulge) and stellar velocity dispersion (σ), are widely used to estimate the universal SMBH mass function. While there is ongoing investigation into how these different scaling relations predict SMBH mass for isolated galaxies, it is relatively unexplored how scaling relations change for galaxies undergoing a merger. In this talk, I will explore scaling relations in mergers for the first time by taking advantage of the well-established value-added catalogs in the Sloan Digital Sky Survey that provide close galaxy pairs, AGN broad lines, and bulge-disk decomposed stellar masses. We show that differential mass growth between the SMBH and host galaxy during a merger appears to affect the offset between SMBH mass from M•-Mbulge and SMBH mass from AGN broad lines. We find evidence that SMBH mass growth outpaces the bulge for AGN residing in the secondary (less massive) bulge and for smaller physical separations between galaxies in a pair. We also find that M•-Mbulge and M•- σ predict significantly different fractions of major and minor black hole mergers for the full close pairs sample, with M•-Mbulge generally predicting black hole mass ratios closer to 1:1 and more major mergers overall. These results have major implications, especially for predictions of the astrophysical gravitational wave background. In particular, the initial SMBH mass ratio, which we observationally estimate here, is one of the key parameters that is used to determine SMBH binary orbital evolution and detection rates in pulsar timing arrays and LISA.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Erin Kara</span><span class="invited-badge">Invited</span></div><div class="talk-title">Time Domain Studies of Supermassive Black Holes<span class="chevron">▼</span></div></summary><div class="talk-abstract"><p>The growth of supermassive black holes via accretion is inherently a turbulent process, causing variability in the observed multi-wavelength emission. We can use this variability to infer properties of the accretion flow (e.g. the disk geometry, accretion rate, density) and the black hole itself (e.g. its mass and spin). In this talk, I will review AGN variability studies, including recent reverberation mapping results, and what can be learned from more exotic transient accretion episodes, such as Tidal Disruption Events and Quasi Periodic Eruptions.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Sasha Tchekhovskoy</span><span class="invited-badge">Invited</span></div><div class="talk-title">From Spherical Cows to Relativistic Jets: 3D GRMHD Simulations of Galactic Centers<span class="chevron">▼</span></div></summary><div class="talk-abstract"><p>Accreting black hole systems can produce large-scale relativistic collimated outflows, or jets, that emit across the entire electromagnetic spectrum. However, how these jets form, propagate, interact with the ambient medium, and radiate remain open questions. I will present recent results from 3D general relativistic magnetohydrodynamic (GRMHD) simulations utilizing a &quot;spherical cow&quot; model for an accreting black hole at the center of a galaxy: a black hole immersed in a uniform, magnetized, rotating ambient gas. This seemingly simple setup yields rich dynamics, including the launching, propagation, and destruction of relativistic jets. We find that the majority of the gas entering the black hole&#x27;s sphere of influence is ultimately expelled. In systems with powerful jets, the outflow mass rate scales with radius as a power-law with a universal radial slope (s = 0.66 ± 0.03) that is remarkably independent of the ambient medium&#x27;s temperature, magnetization, and rotation. In contrast, when jets are weaker, the disk wind launches further out and exhibits a steeper slope (s = 0.87 ± 0.05), yet this still results in approximately the same overall fraction of ejected gas. I will conclude by discussing the broader theoretical and observational consequences of these findings for our understanding of black hole feedback.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Taro Shimizu</span><span class="invited-badge">Invited</span></div><div class="talk-title">Spatially Resolving the Nuclear Regions of Quasars with GRAVITY+<span class="chevron">▼</span></div></summary><div class="talk-abstract"><p>Interferometry with GRAVITY at the VLTI has opened a new window into studies of the nuclear regions around accreting supermassive black holes. In this talk, I will review the work of our group, focussing on our resolved observations of the broad line region (BLR) in both local and high redshift AGN and quasars. Through kinematic modelling of GRAVITY data we have independently measured the BLR size and SMBH mass for 7 local AGN and 7 high redshift quasars (z &gt; 2). We find deviations of the BLR size luminosity relation at both high luminosity and high Eddington ratio as well as a high rate of BLRs dominated by outflow motions. In addition, nearly all of our high redshift quasars are accreting at super-Eddington levels. Combined with follow up NOEMA and ALMA data, we determine host galaxy masses that indicate our high redshift quasars are overmassive, similar to the recently discovered AGN by JWST. With the new LGS systems of GRAVITY+, we further have recently resolved the nuclear [OIII] emitting region with evidence for both a nuclear rotating disk and large-scale outflow. Finally, I will end my talk with an outlook to the future of interferometry with kilometer scale baselines.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Almudena Prieto</span></div><div class="talk-title">Coronal gas emission as tracer of BH mass<span class="chevron">▼</span></div><div class="talk-affil">IAC &amp; University Observatory of Munich</div></summary><div class="talk-abstract"><p>Gaining insight into the shape and nature of the ionising continuum in astrophysical sources is challenging, as the relevant extreme UV to the X-ray spectrum is absorbed by our Galaxy. I will discuss the relevance of high-ionisation coronal lines as genuine tracers of the ionising continuum in black hole (BH)–powered galactic nuclei, and, in turn, of the spectral shape and temperature of the accretion disk, and hence of the BH mass.
+On the basis of bona fide BH masses from reverberation mapping and strong infrared coronal lines, a tight correlation is found between the excitation of this gas and the BH mass. The correlation spans more than three orders of magnitude in BH mass, with a dispersion of 0.47 dex, comparable to that of the “M–sigma” relation. The correlation is formally consistent with the thin-disk accretion prediction, T ~ Mass_BH^(-1/4), and implies very high BH spins for the relation to hold. The relation predicts relatively cold accretion disks for low-activity BHs, mostly represented by the Low-Luminosity Active Galactic Nuclei (LLAGN) class. I will show that, despite their cold disks, LLAGN also exhibit coronal lines revealed by our JWST program, and I will discuss their origin. The general ubiquity of coronal gas accross all BH activity levels opens a new window for BH mass demography estimate at the highest redshifts. I will discuss this new avenue.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Chris Nagele</span></div><div class="talk-title">Simulation-based prediction of black hole spectra: From $10M_\odot$ to $10^8 M_\odot$<span class="chevron">▼</span></div><div class="talk-affil">Johns Hopkins University</div></summary><div class="talk-abstract"><p>Spectra from accreting black holes are one of our most powerful tools for understanding these enigmatic objects. Stellar mass black holes and supermassive black holes, however, exhibit different spectral properties in the X-ray, with stellar mass black holes changing between different spectral states (hard and soft states) and supermassive black holes having more uniform spectral slopes. Motivated by this dynamic, we perform radiation transfer post-processing of general relativistic magnetohydrodynamical simulations (GRMHD) of black hole accretion, for a grid of black hole masses. We use two radiation transfer codes, Pandurata and PTransX, solving for thermal balance and ionization balance in snapshots of GRMHD simulations. We find that the spectral slope of stellar mass black holes ($M_{\rm BH}=10\;M_\odot$) depends on the accretion rate, while the slope of supermassive black holes ($M_{\rm BH}\geq10^6\;M_\odot$) is constant across accretion rates, thereby reproducing the observed trends. We also find a soft X-ray excess for some of our models. This excess originates from Compton up-scattering of photons near the thermal peak, resembling the &#x27;warm Comptonization&#x27; model of the soft excess. We highlight several additional applications of this post processing, to simulations of circum-binary disks, to simulations of magnetically arrested disks, and to simulations of Eddington accretion.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Hengyue Zhang</span></div><div class="talk-title">Weighing Supermassive Black Holes Accurately Across Cosmic Time<span class="chevron">▼</span></div><div class="talk-affil">University of Oxford</div></summary><div class="talk-abstract"><p>Understanding the mechanisms responsible for the formation and growth of supermassive black holes (SMBHs) and their co-evolution with galaxies requires accurate measurements of SMBH masses across cosmic time. In the local universe, we need a large sample of precise and accurate SMBH mass measurements to constrain the intrinsic scatter in local SMBH-galaxy scaling relations. At high redshifts, we need the first direct dynamical SMBH mass measurements to verify the overmassive nature of early SMBHs. I will first present SMBH mass measurements in local galaxies using ALMA observations of CO kinematics that highly resolve the SMBH’s sphere of influence (SoI), focusing on the measurement in NGC 383. The NGC 383 observation has higher resolution (in physically motivated units) than all other gas-dynamical SMBH mass measurements to date, enabling a 5%-precision SMBH mass constraint. Additionally, I will present a dynamical constraint on the SMBH mass in the lensed submillimetre galaxy ID141 at z = 4.24, derived by fitting high-resolution ALMA observations directly in visibility space using a novel dynamical and lens forward modelling package.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Jong-Hak Woo</span></div><div class="talk-title">New Determination of Black Hole Masses: Constraints from Reverberation Mapping, Dynamical Modeling, and the Fundamental Plane of the BLR Size–Luminosity–Velocity Relation<span class="chevron">▼</span></div><div class="talk-affil">Seoul National University</div></summary><div class="talk-abstract"><p>Black hole mass is a key property for understanding accretion physics in active galactic nuclei (AGN) and the coevolution of supermassive black holes (SMBHs) with their host galaxies. Reverberation mapping (RM) provides a direct measurement of the size of the broad-line region (BLR), and the black hole mass can be estimated by combining this size with the velocity of the broad emission lines. However, reverberation-based black hole masses carry an uncertainty of ~0.4 dex, primarily due to the unknown virial factor, which reflects the geometry and inclination of the BLR gas relative to the line of sight.</p><p>In this talk, I will first present a comprehensive analysis of BLR kinematics derived from velocity-resolved RM, incorporating results from the Seoul National University AGN Monitoring Project and other major RM campaigns. Using dynamical modeling, we directly determine black hole masses without assuming an average virial factor. The newly derived masses show overall consistency with a modest but non-negligible scatter compared to previous reverberation masses calibrated using an average virial factor based on the M–σ relation.</p><p>Second, I will present the fundamental plane relation among BLR size, luminosity, and velocity, based on the best Hβ lag sample of 157 AGNs. We argue that the conventional two-parameter BLR size–luminosity relation is incomplete due to the systematic effect of the Eddington ratio. The BLR fundamental plane provides a new mass estimator, reducing systematic biases in single-epoch black hole mass measurements. We show that masses derived from the previous BLR size–luminosity relation can be overestimated by up to 0.5 dex, implying significant revisions to the cosmic black hole mass density and the inferred growth of black hole seeds in the early universe.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Julie Biedermann</span></div><div class="talk-title">Polarimetric signatures of a potential binary supermassive black hole system in Mrk 231.<span class="chevron">▼</span></div><div class="talk-affil">Université de Strasbourg</div></summary><div class="talk-abstract"><p>Its is believed that there is a supermassive black hole (SMBH) at the center of almost all massive galaxies. When galaxies merge, the SMBHs of the progenitor galaxies are expected to form a bound binary system. Given the high frequency of such mergers throughout cosmic time, binary SMBHs should be relatively common in active galactic nuclei (AGNs). Yet, their direct detection remains a major observational challenge, with most candidates inferred only through indirect signatures.</p><p>This presentation will explore how spectropolarimetry can be used to detect and characterize SMBHs binaries in AGNs. We present new perspectives into the internal structure of Markarian 231 (Mrk 231), the nearest ultraluminous infrared galaxy. The optical-UV spectrum of this quasar is distinctive due to a strong attenuation in the near-UV waveband and a localized peak of linear polarization degree associated with a rotation of the polarization angle beyond this ultraviolet break. Our study aims to investigate the hypothesis of a binary SMBHs system in the core of Mrk 231 as proposed by Yan and al (2015) in order to explain the observed enigmatic properties of this object.</p><p>To investigate this approach, we reconstruct the total spectral energy distribution (SED) of Mrk 231 by modeling the multi-temperature black body emission of two SMBHs and include the emission of the host galaxy as well as the re-radiation from a dusty torus in the near-infrared. Using this SED model in total flux, we ascribe different values of polarization to each of the components to try to reproduce the unique polarization features of the system across a large wavelength band, ranging from the far-UV to the infrared.</p><p>Our total flux SED model based on the binary SMBH hypothesis successfully reproduces the pronounced ultraviolet cut-off observed in the spectrum of Mrk 231, supporting the binary SMBHs scenario. Furthermore, the polarization properties of this quasar can also be reproduced with the same model, using a specific set of parameters that overcomes most of the problems of degeneracy thanks to the simultaneous fitting of the total flux, polarization degree and polarization angle, three independent observables.</p><p>This study provides a critical step toward the understanding of the complex structure of Mrk 231 and the role of binary SMBHs in the evolution of AGNs. Such investigations support the case for future high-sensitivity UV spectropolarimeters. In particular, a next-generation instrument like POLLUX, proposed for the Habitable Worlds Observatory, would enable stringent tests of binary SMBH scenarios through features such as double peaks in polarized flux. These observations will provide critical constraints on black hole growth, feedback mechanisms, and the evolution of AGNs.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Martin Bureau</span></div><div class="talk-title">WISDOM: A new mm fundamental plane of black hole accretion<span class="chevron">▼</span></div><div class="talk-affil">University of Oxford</div></summary><div class="talk-abstract"><p>We show how observations of the mm continuum of the central regions of galaxies from the WISDOM project on 10 pc scales reveal a correlation between the nuclear mm continuum luminosities and the supermassive black hole (SMBH) masses, much tighter than most SMBH mass - galaxy correlations. Adding the X-ray luminosities reveals a new &quot;mm fundamental plane of black hole accretion&quot; that is nearly as tight as the SMBH mass - stellar velocity dispersion relation. The relation holds for both low- and high-luminosity active galactic nuclei as well as accreting stellar mass black holes. The relation is reproduced by advection-dominated accretion flow (ADAF) models but not by classic torus-thin accretion disc models. Overall, these new relations thus pose strong constraints on viable accretion disc models, in addition to offering a rapid method to estimate SMBH masses.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Refa Al-Amri</span></div><div class="talk-title">Advancing Black Hole Mass Measurements in Nearby Massive Galaxies with JWST and Triaxial Stellar-dynamical Models<span class="chevron">▼</span></div><div class="talk-affil">Texas A&amp;M University</div></summary><div class="talk-abstract"><p>About 150 supermassive black hole (BH) masses have been dynamically measured in nearby galaxies, but the local BH census remains highly incomplete. As a result, the slope, scatter, and even the shape of the BH-host galaxy relations are still uncertain, particularly at the high-mass end. In addition, only a small number of studies have directly compared BH masses derived from different dynamical tracers or modeling assumptions, with mixed results. In this talk, we focus on two local ellipticals, M87 and NGC 4261, which anchor the sparsely populated upper end of the BH mass distribution. A wide range of BH mass measurements has been reported for M87 over the past four decades using multiple methods, whereas NGC 4261 was the target of one of the earliest HST ionized-gas dynamical studies and now has a very precise BH mass from ALMA molecular-gas observations. We present exquisite high angular resolution spectra at the center of both galaxies from the JWST NIRSpec IFU, large-scale stellar kinematics measured with Keck KCWI and VLT MUSE, and stellar-dynamical models that make use of a recently revamped triaxial orbit code and modern search strategies to simultaneously determine mass and galaxy intrinsic shape parameters. Such work is a necessary step towards obtaining robust dynamical BH masses, evaluating the consistency of the main measurement techniques and subsequent effects on the BH scaling relations, and advancing our understanding of the growth of high-mass galaxies and their central BHs.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Shu Wang</span></div><div class="talk-title">TiDES-RM: Status Updates on the Time-Domain Extragalactic Survey Reverberation Mapping Program<span class="chevron">▼</span></div><div class="talk-affil">University of Southampton</div></summary><div class="talk-abstract"><p>The Time-Domain Extragalactic Survey Reverberation Mapping program (TiDES-RM) is a dedicated spectroscopic monitoring campaign with the 4-metre Multi-Object Spectroscopic Telescope (4MOST). TiDES-RM will monitor four LSST deep-drilling fields for at least five years starting in 2026, with a typical cadence of 10–14 days. Combining 4MOST spectroscopy (R~4000) with high-cadence LSST photometry, TiDES-RM is designed to measure multi-line reverberation lags and black hole masses for a sample of ~950 broad-line AGNs over 0.1 &lt; z &lt; 3.5. These data will enable improved single-epoch black hole mass estimators, constraints on BLR kinematics, and tests of the evolution of black hole–host scaling relations across cosmic time. In this talk, I will summarize the program design and sample characterization, present the current observing status, and highlight some of the key science topics that Tides-RM will be working on.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Stephen DiKerby</span></div><div class="talk-title">Galactic Center Molecular Clouds as Windows into Sgr A*&#x27;s Past<span class="chevron">▼</span></div><div class="talk-affil">Michigan State University</div></summary><div class="talk-abstract"><p>As the closest supermassive black hole (SMBH) and a target of Event Horizon Telescope, Sgr A* is a unique laboratory for the study of black holes in the local universe. In its quiescent state, Sgr A* emits IR and X-rays via nonthermal processes at about billionth of the Eddington luminosity. However, reflected X-rays from galactic center molecular clouds (GCMC) about 100 light-years from Sgr A* suggest that Sgr A* was in the recent past substantially more luminous than it appears today. New measurements of Iron emission lines by the XRISM telescope tightly constrain the X-ray reflection model while precisely measuring the physical properties of GCMC, enabling detailed modeling of the environment immediately surrounding Sgr A*. Combined with spatially resolved light curves and X-ray polarization measurements, our XRISM observations of GCMC support a new model for Sgr A* as a SMBH that has undergone substantially changes in luminosity on a scale of only a few centuries, revising our understanding of the variability of the only SMBH specimen where these analyses are possible.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Colin Burke</span></div><div class="talk-title">AGN optical variability as a probe of cosmology and SMBH accretion in the Rubin Era<span class="chevron">▼</span></div><div class="talk-affil">Yale University</div></summary><div class="talk-abstract"><p>The growing discrepancy between measurements of H_0 at early and late times now appears to be significant at the ~4−7σ level. This inconsistency, known as the Hubble tension, may arise from unrecognized systematic uncertainties or from new physics, such as an evolving dark energy equation of state. In this talk, I will describe recent efforts to extend the cosmological distance ladder beyond Type Ia supernovae (SN Ia) by exploiting active galactic nuclei (AGN), which are orders of magnitude more luminous and observable at much farther distances. By modeling ~20-year, multi-band optical light curves for thousands of AGN using multi-band Gaussian processes, we find a tight empirical relation linking variability amplitude and characteristic timescale to intrinsic luminosity. This relation enables the construction of an AGN-based Hubble diagram reaching z~3.5, well beyond the redshift range accessible with SN Ia. These results establish AGN variability as a powerful and complementary cosmographic tool at high redshift and a new pathway to test deviations from the standard ΛCDM expansion history. Furthermore, continued characterization of these correlations with Rubin across a wide range of black hole mass and luminosities will place important constraints on their accretion properties, AGN geometry, and their standardizability as cosmological probes.</p></div></details></div><div class="theme-section"><div class="theme-header" style="--t-accent:#F28A64"><span class="theme-num">Theme 4</span><span class="theme-label">First Black Holes, Seeds and High-redshift</span></div><details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Aishwarya Sarath</span></div><div class="talk-title">Probing Galaxy Formation around a z = 6.9 Quasar VIK J2348–3054<span class="chevron">▼</span></div><div class="talk-affil">Universidad Diego Portales</div></summary><div class="talk-abstract"><p>Recent observations of the z = 6.9 quasar VIK J2348–3054 reveal a remarkable overdensity of companion Lyman-α emitters (LAEs), nearly an order of magnitude higher than expected in blank fields, indicating that the quasar resides in a massive protocluster environment. At the same time, we see a clear deficit of LAEs within a projected radius of 5.15 Mpc from the quasar, suggesting that its intense radiation may be suppressing star formation in nearby low-mass galaxies. Using GMOS spectroscopic observations obtained this semester, we confirm a subset of these candidates as genuine LAEs, strengthening the robustness of these results. To further probe the quasar’s influence on galaxy formation, we incorporate new DECam Y-band imaging to investigate the spatial distribution of Lyman Break Galaxies (LBGs) in the same field. As LBGs are typically more massive than LAEs and therefore less susceptible to radiative suppression, they provide an independent tracer of galaxy growth in this extreme environment. We expect LBGs to populate regions where LAEs are absent, and our preliminary analysis has already identified more than 40 LBG candidates satisfying the color-selection criteria. Together, these results offer new insight into how powerful quasars shape the evolution of galaxies over cosmic time.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Olivier Gilbert</span></div><div class="talk-title">Probing high-z BLAGNs with a large sample from JWST COSMOS-3D<span class="chevron">▼</span></div><div class="talk-affil">University of Michigan</div></summary><div class="talk-abstract"><p>The origin of black hole growth and its connection to host galaxy evolution remain key open questions in astrophysics, particularly during the first billion years of cosmic history. Recent observations have revealed the presence of massive black holes at very high redshifts, challenging models of early black hole formation and co-evolution with galaxies. With the advent of the James Webb Space Telescope (JWST), it is now possible to directly study active galactic nuclei (AGN) and their host galaxies at these early epochs. We use JWST NIRSpec/WFSS and NIRCam imaging from the COSMOS-3D program to construct a statistical sample of more than 80 broad-line AGN (BLAGN) at redshifts 5&lt;z&lt;6.5, among the largest currently available at these epochs. We investigate black hole growth and host galaxy properties by combining emission-line measurements with imaging-based decomposition of AGN and host light. This allows us to explore the relationship between black hole mass, host galaxy stellar mass, and accretion properties, providing new constraints on black hole-galaxy co-evolution in the first Gyr of the universe. We further examine how AGN selection and spectral characteristics may influence inferred trends by conducting statistical comparisons. These analyses allow us to assess whether AGN constitute a single population or whether different selection methods probe distinct systems.</p></div></details></div>
+</div>
+<footer class="site-footer">
+  <div class="star-deco">&#11819; &nbsp; &#9679; &nbsp; &#11819;</div>
+  <p>18 talks &middot; 3 invited &middot; <a href="index.html">All days</a></p>
+  <p style="margin-top:0.3rem">Tap any talk to expand its abstract</p>
+</footer>
+</body>
+</html>

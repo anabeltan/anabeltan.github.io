@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#1A0B14">
+<title>SMBH 2026 — Tuesday, June 30, 2026</title>
+<style>
+:root{--bg:#1A0B14;--panel:#271220;--panel2:#311A2B;--accent:#F28A64;--glow:#F6C177;--text:#FDF0EC;}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  min-height:100vh;
+}
+
+/* ---- Header ---- */
+.site-header{
+  background:var(--panel2);
+  border-bottom:2px solid var(--accent);
+  padding:0.9rem 1rem 0.75rem;
+  position:sticky;top:0;z-index:200;
+}
+.site-header .conf-name{
+  font-size:0.7rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--glow);margin-bottom:0.15rem;
+}
+.site-header .day-name{
+  font-size:1.55rem;font-weight:800;color:#fff;line-height:1.15;
+}
+.site-header .day-date{
+  font-size:0.82rem;color:var(--accent);margin-top:0.1rem;
+}
+.site-header .star-row{
+  font-size:0.65rem;letter-spacing:0.18em;color:var(--accent);
+  opacity:0.5;margin-top:0.3rem;
+}
+
+/* ---- Day navigation ---- */
+.day-nav{
+  display:flex;gap:0.4rem;
+  padding:0.6rem 0.75rem;
+  background:var(--bg);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.day-nav::-webkit-scrollbar{display:none}
+.day-nav a{
+  flex-shrink:0;
+  padding:0.3rem 0.7rem;
+  border-radius:20px;
+  font-size:0.78rem;font-weight:600;
+  text-decoration:none;
+  color:rgba(255,255,255,0.6);
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:background 0.15s,color 0.15s;
+}
+.day-nav a.active{
+  background:var(--accent);
+  color:#07111F;
+  border-color:var(--accent);
+  font-weight:700;
+}
+.day-nav a:hover:not(.active){
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+}
+
+/* ---- Container ---- */
+.container{max-width:640px;margin:0 auto;padding:0 0.75rem 3rem}
+
+/* ---- Theme section ---- */
+.theme-section{margin-top:1.6rem}
+.theme-header{
+  display:flex;align-items:flex-start;gap:0.55rem;
+  padding:0.55rem 0.85rem;
+  border-radius:8px;
+  background:var(--panel);
+  margin-bottom:0.75rem;
+  border-left:3px solid var(--t-accent);
+}
+.theme-num{
+  font-size:0.68rem;font-weight:700;
+  color:var(--t-accent);
+  letter-spacing:0.06em;text-transform:uppercase;
+  white-space:nowrap;margin-top:0.1rem;
+}
+.theme-label{font-size:0.83rem;font-weight:600;color:var(--glow)}
+
+/* ---- Talk card ---- */
+.talk-card{
+  background:var(--panel);
+  border-radius:10px;
+  margin-bottom:0.55rem;
+  border:1px solid rgba(255,255,255,0.07);
+  overflow:hidden;
+}
+.talk-card summary{
+  padding:0.8rem 0.9rem 0.75rem;
+  cursor:pointer;
+  list-style:none;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.talk-card summary::-webkit-details-marker{display:none}
+.talk-card[open] summary{border-bottom:1px solid rgba(255,255,255,0.07)}
+.talk-top{
+  display:flex;align-items:center;justify-content:space-between;gap:0.5rem;
+  margin-bottom:0.3rem;
+}
+.talk-speaker{font-weight:700;font-size:0.95rem;color:#fff}
+.invited-badge{
+  flex-shrink:0;
+  font-size:0.62rem;font-weight:700;
+  padding:0.12rem 0.42rem;border-radius:12px;
+  background:rgba(200,146,42,0.18);
+  color:#C8922A;
+  border:1px solid rgba(200,146,42,0.45);
+  letter-spacing:0.05em;text-transform:uppercase;
+}
+.talk-title{
+  font-size:0.87rem;color:var(--glow);line-height:1.4;
+  padding-right:1.4rem;
+  position:relative;
+}
+.chevron{
+  position:absolute;right:0;top:0.1rem;
+  font-size:0.65rem;color:var(--accent);
+  transition:transform 0.2s;
+}
+details[open] .chevron{transform:rotate(180deg)}
+.talk-abstract{
+  padding:0.7rem 0.9rem 0.9rem;
+  font-size:0.82rem;
+  color:rgba(255,255,255,0.68);
+  line-height:1.65;
+}
+.talk-abstract p+p{margin-top:0.6rem}
+.talk-affil{
+  font-size:0.74rem;
+  color:rgba(255,255,255,0.38);
+  margin-top:0.15rem;
+}
+
+/* ---- Empty day ---- */
+.empty-day{
+  margin-top:2rem;
+  text-align:center;
+  color:rgba(255,255,255,0.3);
+  font-size:0.9rem;
+  font-style:italic;
+}
+
+/* ---- Footer ---- */
+.site-footer{
+  margin-top:2.5rem;
+  padding:1.2rem 1rem 2rem;
+  border-top:1px solid rgba(255,255,255,0.06);
+  text-align:center;
+}
+.site-footer .star-deco{
+  font-size:0.7rem;letter-spacing:0.2em;
+  color:var(--accent);opacity:0.4;margin-bottom:0.6rem;
+}
+.site-footer p{font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.7}
+.site-footer a{color:var(--accent);text-decoration:none}
+
+/* ---- Index page ---- */
+.index-hero{
+  padding:2.5rem 1rem 2rem;text-align:center;
+}
+.index-hero h1{
+  font-size:2rem;font-weight:800;color:#fff;
+}
+.index-hero .subtitle{
+  font-size:0.95rem;color:var(--glow);margin-top:0.4rem;font-style:italic;
+}
+.index-hero .dates{
+  font-size:0.85rem;color:var(--accent);margin-top:0.5rem;
+}
+.day-grid{
+  max-width:480px;margin:0 auto;
+  padding:0 0.75rem 3rem;
+  display:flex;flex-direction:column;gap:0.75rem;
+}
+.day-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.2rem;
+  border-radius:12px;
+  text-decoration:none;
+  background:var(--panel2);
+  border:1px solid rgba(255,255,255,0.08);
+  transition:border-color 0.15s,background 0.15s;
+}
+.day-btn:hover{
+  border-color:var(--accent);
+  background:var(--panel);
+}
+.day-btn-left .day-name-big{
+  font-size:1.1rem;font-weight:700;color:#fff;
+}
+.day-btn-left .day-date-small{
+  font-size:0.78rem;color:var(--accent);margin-top:0.1rem;
+}
+.day-btn-right{
+  font-size:0.7rem;color:rgba(255,255,255,0.3);
+}
+.talk-count-badge{
+  font-size:0.72rem;font-weight:600;
+  padding:0.2rem 0.55rem;border-radius:20px;
+  background:rgba(255,255,255,0.07);
+  color:rgba(255,255,255,0.45);
+}
+
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="conf-name">SMBH 2026 · Montr&eacute;al</div>
+  <div class="day-name">Tuesday</div>
+  <div class="day-date">June 30, 2026</div>
+  <div class="star-row">&#9733; &nbsp; &#9679; &nbsp; &#9733; &nbsp; &#9679; &nbsp; &#9733;</div>
+</header>
+<nav class="day-nav"><a href="day1.html" class="">Monday</a><a href="day2.html" class="active">Tuesday</a><a href="day3.html" class="">Wednesday</a><a href="day4.html" class="">Thursday</a><a href="day5.html" class="">Friday</a></nav>
+<div class="container">
+<div class="theme-section"><div class="theme-header" style="--t-accent:#C8922A"><span class="theme-num">Theme 1</span><span class="theme-label">Black Hole Demographics and Scaling Relations</span></div><details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Dan Schwartz</span></div><div class="talk-title">Strong lensing of AGN as a cosmic probe of SMBH structure and multiplicity at high redshift.<span class="chevron">▼</span></div><div class="talk-affil">Harvard University</div></summary><div class="talk-abstract"><p>Strong gravitational lensing of distant AGN offers a powerful cosmic telescope to probe sub‑kiloparsec structures at early cosmic epochs when spatial offsets and mergers are expected to be abundant, yet unresolvable by direct imaging with current and future instruments. I will present an innovative solution to this conundrum, combining lens mass modeling in the optical with spatially resolved Chandra X‑ray imaging of lensed AGN. Chandra’s sub-arcsecond angular resolution is critical for resolving individual lensed images in the X-rays. By performing a maximum-likelihood analysis, we recover the relative spatial origin of the X‑ray emission with respect to the optical, achieving milliarcsecond relative astrometry when using Gaia observations. 
+I will showcase recent results from Chandra observations of three lensed quasars: J0659 (z = 3.1), J1433 (z = 2.74), and the first zig-zag lens J1721 (z = 2.37), highlighting sensitivity to structure at tens-to-hundreds of parsecs expected from low-z AGN studies. I will then discuss prospects for identifying dual AGN at sub‑kpc separations at high-z – critical predictions in galaxy formation, yet observationally elusive. I will introduce our current multiwavelength results addressing the nature of the multiply-imaged radio-loud system J2019 (z = 3.3), a strong dual AGN candidate at a projected separation of 175 pc. If confirmed, this would challenge galaxy merger rates assumed by state-of-the-art cosmological models.
+Finally, I will describe how the caustic method will scale to the thousands of new lensed AGN expected from Euclid, LSST, and other discovery engines, leveraging machine-learning-optimized lens modeling for sample-level analyses.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Elena Dalla Bonta&#x27;</span></div><div class="talk-title">Advancing Black Hole Mass Measurements in Quasars Across the Early Universe<span class="chevron">▼</span></div><div class="talk-affil">University of Padua, Italy</div></summary><div class="talk-abstract"><p>Reliable measurements of black hole masses are essential to reconstruct the assembly history of supermassive black holes and their connection with galaxy evolution. Reverberation mapping remains the most direct technique for active galactic nuclei, yet its demanding observational requirements limit its applicability to large or distant samples. In this contribution, we introduce an advanced single-epoch mass estimation strategy that represents the current state of the art, grounded in the properties of broad emission lines and anchored to a newly homogenized set of reverberation mapping analyses.</p><p>The method integrates, in a consistent way, the three physical ingredients that predominantly shape mass determinations: emission line luminosity, velocity width, and accretion rate. Through a systematic reanalysis of archival reverberation mapping campaigns using improved detrending procedures, we establish updated scaling relations that markedly improve the precision of single-epoch estimators. These results can be applied directly to extensive AGN surveys and are particularly timely for present and future spectroscopic programs, including those carried out with JWST.</p><p>The typical scatter relative to reverberation based masses is limited to about 0.2–0.3 dex, demonstrating that this approach offers a robust and scalable pathway for investigating black hole populations through cosmic history, opening new perspectives on AGN accretion and galaxy growth from the nearby Universe to the highest redshifts.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Francesco Ziparo</span></div><div class="talk-title">A Selection Aware View of Black Hole–Galaxy Coevolution at High Redshift<span class="chevron">▼</span></div><div class="talk-affil">Scuola Normale Superiore</div></summary><div class="talk-abstract"><p>The James Webb Space Telescope (JWST) is revealing a large population of broad-line active galactic nuclei (AGN) at redshift z ≳ 4, allowing us to probe black hole (BH) growth within the first billion years of cosmic history. A key open question is whether the black hole–galaxy mass relation was already established at these early epochs or instead emerged later through co-evolution.
+Using the JADES survey data, we developed a forward-modeling Bayesian framework that explicitly accounts for the detectability of broad Hα emission, incorporating selection effects directly into the likelihood in order to recover the intrinsic BH–stellar mass relation.
+I will present the resulting relation and show that its slope and normalization are consistent with measurements in the local Universe, indicating that the average scaling between black holes and galaxies was already in place by redshift ~4–6. However, the intrinsic scatter is significantly larger than observed today.
+I will discuss the physical interpretation of this increased dispersion, including bursty accretion, delayed feedback, and differences in merger or seeding histories, and what this implies for early black hole–galaxy co-evolution. Finally, I will outline how upcoming JWST samples will test whether this large scatter is a persistent feature of the high-redshift Universe.</p></div></details></div><div class="theme-section"><div class="theme-header" style="--t-accent:#F28A64"><span class="theme-num">Theme 4</span><span class="theme-label">First Black Holes, Seeds and High-redshift</span></div><details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Claude-André Faucher-Giguère</span></div><div class="talk-title">On the Evolution of Massive Black Holes and AGN in High-Redshift, Bursty Galaxies and Insights into the Nature of Little Red Dots<span class="chevron">▼</span></div><div class="talk-affil">Northwestern University</div></summary><div class="talk-abstract"><p>High-resolution galaxy formation simulations predict that high-redshift, low-mass galaxies undergo bursty star formation, with star formation rates that vary at the order-of-magnitude level on short timescales. Star formation bursts repeatedly eject gas from galaxies, strongly limiting the gas available to accrete onto black holes. Moreover, the clumpy, highly dynamic morphologies of high-redshift galaxies imply they often do not have well-defined dynamical centers toward which black holes can efficiently sink, presenting an additional challenge — beyond the short age of the universe — in explaining the existence of massive nuclear black holes during the first gigayear of cosmic history. In this talk, I will summarize results from several theoretical studies based on the FIRE galaxy formation simulations that provide insights into the high-redshift AGN population and the origin of supermassive black holes. These results are grounded in simulations that are in excellent agreement with many observed properties of high-redshift host galaxy populations, including their UV luminosity function and metallicities measured by the James Webb Space Telescope. As time permits, I will discuss the orbits of seed black holes in early galaxies and the possible role of star clusters, predictions for the AGN luminosity function and how it is affected by bursty star formation, and how the recently discovered population of Little Red Dots can be explained in the context of nuclear accretion in realistic bursty galaxies.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Sophie Koudmani</span><span class="invited-badge">Invited</span></div><div class="talk-title">High-redshift black hole formation and growth: a theoretical perspective<span class="chevron">▼</span></div></summary><div class="talk-abstract"><p>Supermassive black holes (SMBHs) reside at the centres of most massive, if not all, galaxies influencing their host galaxy’s evolution through a complex feedback cycle. SMBH feeding and feedback spans a vast range of scales, from the accretion disc to the cosmic web, so that all past cosmological simulations have had to rely on simple ‘subgrid’ models for SMBH evolution, limiting their predictive capabilities. Recent observational breakthroughs have challenged these models as JWST has detected significantly more active SMBHs in the early Universe than had been predicted. The recent evidence for a gravitational wave background from SMBH mergers also points to the need for more efficient early SMBH growth. The origin of SMBHs is a major open research question due to long-standing degeneracies between SMBH seed masses and growth rates. I will discuss the latest simulation suites that aim to uncover the formation and rapid growth of SMBHs in the early Universe, particularly in light of new observations from JWST. I will outline the main challenges, including uncertainties for the seeding channels and the AGN accretion modelling as well as, crucially, mimicking observational selection functions for apple-to-apple comparisons between the simulations and observations. Finally, I will conclude with an outlook on next-generation SMBH models and synthetic observation tools for galaxy formation simulations.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Silvia Onorato</span></div><div class="talk-title">Twinkle, twinkle, little pair: the tightest z~6 quasar duo as a beacon of early structure formation<span class="chevron">▼</span></div><div class="talk-affil">Gemini Observatory</div></summary><div class="talk-abstract"><p>The discovery of close quasar pairs at z ~ 6 provides a new avenue to investigate early supermassive black hole (SMBH) growth, galaxy assembly, and the small-scale clustering of quasars near the end of cosmic reionization. We present the discovery and first characterization of the most compact known quasar pair in the Epoch of Reionization, J1602+4228, with a projected separation of only ~0.8’’ (~ 4.5 kpc at z ~ 6.08). This system offers a rare opportunity to probe SMBH fueling and early structure formation on kiloparsec scales at high redshift. Using spectroscopy from Gemini/GNIRS and JWST/NIRSpec IFU, HST/WFC3 imaging, and [C II] maps from IRAM NOEMA, we characterize the emission-line properties, host-galaxy morphology, and dynamical context of the two quasars, enabling constraints on their black hole masses, accretion states, and potential signs of interaction or merger-driven activity. By comparing the environment of J1602+4228 to expectations from models of early quasar clustering, we assess whether such close pairs preferentially inhabit overdense regions or can arise in more typical halos. This work represents a first step toward establishing the physical drivers of SMBH growth during the EoR and the role of early mergers and environment in shaping the first massive black holes.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Francesco D&#x27;Eugenio</span><span class="invited-badge">Invited</span></div><div class="talk-title">Little Red Dots: Dense Gas, Broad Lines, and the Nature of a New AGN Population<span class="chevron">▼</span></div></summary><div class="talk-abstract"><p>Little Red Dots (LRDs) are a newly identified class of compact, broad-line AGN at high redshifts whose high number density suggests they play an important role in early black-hole growth. They are characterized by broad permitted lines, V-shaped SEDs, and a remarkable incidence of unusual spectral features compared to quasars and local AGN. They show Balmer-line absorption at a rate 10-100 times higher than in normal AGN, implying the presence of gas with high densities and large column densities. Many also exhibit metal-line absorption, strong Balmer breaks, low-ionization emission, exponential line wings, and, in some cases, forbidden iron and strong auroral emission, alongside a general paucity of high-ionization lines.</p><p>I will discuss a spectroscopic analysis of the absorbing and emitting gas in LRDs, highlighting its complex kinematic structure and its likely connection to both feeding and feedback around low-mass black holes. I will discuss these phenomena in the context of density stratification, gas clouds or stationary envelopes surrounding the central engine, and the broader physical picture emerging for this enigmatic population.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Hannah Ubler</span><span class="invited-badge">Invited</span></div><div class="talk-title">Observational constraints on distant black holes and their immediate environments<span class="chevron">▼</span></div></summary><div class="talk-abstract"><p>One of the most surprising JWST results is an unexpectedly high abundance of actively accreting black holes in the early Universe. Compared to the local population, these black holes differ in various aspects, such as their relation to their host galaxies or their multi-wavelength properties. These observational findings challenge our understanding of the past evolution of present-day supermassive black holes, and provide new ways to constrain theoretical models of black hole formation and growth. I will give an overview of recent observational results on massive black holes in the first few billion years, driven by the unprecedented capabilities of JWST to explore cosmic dawn, and especially by NIRSpec-IFS to constrain early black holes and their immediate environments.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Andy Marszewski</span></div><div class="talk-title">Setting Little Red Dots in FIRE: The Ability of Bursty Galaxies to Host an Abundant Population of High-z AGN<span class="chevron">▼</span></div><div class="talk-affil">Northwestern University / CIERA</div></summary><div class="talk-abstract"><p>The James Webb Space telescope has unveiled an abundant population of potential active galactic nuclei (AGN) at high redshift known as little red dots (LRDs), which are likely hosted in relatively low-mass galaxies. However, previous theoretical models have highlighted the difficulty in continuously feeding massive black holes in the central regions of bursty, high-redshift, low-mass galaxies because of repeated gas evacuation by stellar feedback. We analyze galaxies within high-redshift FIRE-2 simulations to understand whether they are capable of hosting the observed abundant population of high-redshift AGN. We use the gravitational torque-driven accretion model and a simple free-fall accretion model to derive black hole accretion rates and construct predicted AGN bolometric luminosity functions for z=5-7. Despite the highly intermittent black hole accretion rates inferred from our FIRE-2 sample, we show that bursty, high-redshift galaxies are predicted to host a sufficiently abundant population of AGN in the luminosity range of LRDs. Interestingly, our models reproduce the observed number of AGN at the highest LRD luminosities but overpredict their abundance at lower luminosities relative to observations. We explore potential explanations for this overprediction and their implications for the types of galaxies that host LRDs and for black hole growth in the early universe. These models also predict that the vast majority of AGN in the luminosity range of observed LRDs are hosted by low-mass (log⁡(M_⋆/M_⊙ )=5-10) galaxies.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Greg Bryan</span></div><div class="talk-title">The Implication of High-z Accretion for SMBH Jet Physics and Seed Environments<span class="chevron">▼</span></div><div class="talk-affil">Columbia University</div></summary><div class="talk-abstract"><p>Recent observations suggest that some high-redshift black holes grow at or above the Eddington limit, posing a challenge for models in which mechanical feedback strongly self-regulates accretion. I will discuss a framework that connects small-scale jet physics to cosmological black hole assembly in order to assess what such rapid growth implies for feedback efficiencies and host environments. High-resolution simulations show that jet-driven outflows can efficiently disrupt gas in low-mass halos, limiting growth unless the mechanical coupling is weak or the ambient gas density is unusually high. When embedded in cosmological models, these results indicate that early black hole evolution is highly sensitive to feedback prescriptions and halo structure. If sustained super-Eddington growth is common, it may point to inefficient mechanical feedback and/or seed formation in halos more massive and centrally concentrated than the standard atomic-cooling picture.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Hyun Song</span></div><div class="talk-title">Observing the First Supermassive Black Holes with JWST<span class="chevron">▼</span></div><div class="talk-affil">Seoul National University</div></summary><div class="talk-abstract"><p>Authors: Hyun Song, Junehyoung Jeon, Anthony Taylor, Volker Bromm</p><p>The James Webb Space Telescope (JWST) has significantly expanded the frontier of observational cosmology, and the recent discovery of supermassive black holes (SMBHs) at z ~10 promises to directly probe their formation and early evolution. Such observations may help to answer how SMBHs were born and grew into the billion-solar-mass objects observed at the centers of quasars and local galaxies. Here, we investigate the redshift horizon at which JWST can detect the first SMBHs. This horizon is determined by balancing the minimum black hole mass required to produce sufficient flux above the JWST sensitivity threshold and the maximum mass allowed by the abundance of SMBHs. We examine three SMBH formation and growth scenarios: a feedback-regulated model, a light-seed model accreting at twice the Eddington limit, and a direct-collapse black hole (DCBH) seed accreting at the Eddington limit.
+ We find that the feedback-regulated model predicts a redshift horizon of z~7, which is already exceeded by current JWST observations, indicating that feedback-regulated growth alone cannot explain the earliest SMBHs. In contrast, the light seed and DCBH scenarios yield redshift horizons of z~15 and z~17, respectively. We further show that spectroscopic confirmation of an SMBH at these redshifts may be feasible through detection of strong UV emission lines. This suggests promising prospects for pushing observational studies of primitive SMBHs to epochs as early as ~250 million years after the Big Bang. Moreover, our results imply that detection of an SMBH at z &gt; 15 would strongly favor a heavy seed origin.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">John Silverman</span></div><div class="talk-title">Evolution of supermassive black holes and their host galaxies at z &gt; 6 with JWST<span class="chevron">▼</span></div><div class="talk-affil">Kavli IPMU; University of Tokyo</div></summary><div class="talk-abstract"><p>Clues on the formation of supermassive black holes may be found in the properties of their host galaxies and mass relations with cosmic time. We will present results from JWST programs, while focusing on the Subaru High-z Exploration of Low-Luminosity Quasars (SHELLQs) survey at z &gt; 6. After image and spectral decomposition of NIRCam and NIRSpec data, host detections reveal their stellar masses, morphology, and properties of the stellar population. Coupled with black hole masses, we carry out one of the first assessments of the intrinsic ratio between black hole mass and stellar mass at z &gt; 6. Lastly, the connection with lower mass black holes, including the “Little Red Dot” population, presents new insights into early phases of black hole growth and their seeding.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Luca Zappacosta</span></div><div class="talk-title">A Multi-Wavelength View of z&gt;6 QSOs: Combining the deepest X-ray Observations with JWST/NIRSpec Spectroscopy<span class="chevron">▼</span></div><div class="talk-affil">INAF - OAR</div></summary><div class="talk-abstract"><p>Shedding light on the nuclear properties of z&gt;6 quasars (QSOs) powered by supermassive black holes (SMBHs) with masses &gt;10^9 Msun is fundamental to understand their rapid formation. We probe the innermost regions of these QSOs via X-ray emission which, at just a few tens of gravitational radii, provides the most direct window into the growing SMBH.</p><p>We present results from HYPERION, an unprecedented ~700-hour XMM-Newton Heritage Program targeting 18 luminous QSOs at z=6-7.5 selected for their extreme SMBH growth. Our findings reveal a strikingly new regime for the nuclear properties of these early-formed QSOs: their X-ray continuum slopes (Γ) are significantly steeper than those of analogous QSOs at z&lt;6. By investigating correlations between Γ and UV-derived properties, we identify a significant link between the X-ray slope and the velocity of nuclear AGN-driven ionized winds, potentially indicative of fast SMBH accretion.</p><p>This investigation is further expanded by a new 150-hour XMM-Newton Large Program which, combined with archival X-ray data, brings the total sample to 30 QSOs and includes sources with slower growth rates. The data confirm that steep X-ray slopes are a ubiquitous feature of the z&gt;6 QSOs population, independent of growth-rate selection. We discuss the implications of these results to explain the widespread non-detection of X-rays in the low-luminosity AGN population recently discovered by JWST.</p><p>Finally, we report on the ongoing JWST/NIRSpec spectral analysis of more than half of this sample. By characterizing the rest-frame optical emission features, we provide the first systematic investigation of the broad/narrow-line region and large-scale ionized outflows, and their link with the innermost X-ray emitting corona, offering an unprecedented, multi-component view of the most distant QSOs currently known.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Pablo G. Pérez-González</span></div><div class="talk-title">Little Red Dots: one observational tag, diverse spectroscopic flavors with distinct stellar and nuclear activity features<span class="chevron">▼</span></div><div class="talk-affil">Centro de Astrobiología (CAB), CSIC-INTA</div></summary><div class="talk-abstract"><p>We will present an spectro-photometric analysis of a complete sample of little red dots (LRDs). We stack NIRSpec prism data for ~250 source, and add MIRI observations to produce high SNR (&gt;30) spectral energy distributions of LRDs covering the rest-frame wavelength range from 1000 Angstrom to 4 micron. Our analysis concentrates in some spectral features of stellar emission present in all LRDs, more interestingly, Wolf Rayet signatures. In addition, we analyze iron emission that we use to estimate accretion properties, finding relatively large values but sub-Eddington. In addition, we present a battery of line ratios that characterize the gas content and structure of LRDs, challenging quasi-star scenarios. Based on a comprehensive analysis of the spectrophotometric data, we discuss the validity of black hole and stellar masses, finding that LRDs host moderately over-massive black holes, in contrast with other estimations based on single-epoch line emission.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Quinn Casey</span></div><div class="talk-title">A Population of Local Red Dots in SDSS<span class="chevron">▼</span></div><div class="talk-affil">Dartmouth College</div></summary><div class="talk-abstract"><p>Compact and red sources in the high redshift (z~5) Universe, known as &quot;Little Red Dots&quot; (LRDs), are among JWST&#x27;s most intriguing discoveries. These sources have broad Balmer emission lines, weak X-ray emission, and unique spectral energy distributions (SEDs) poorly fit by either stellar or AGN templates. Local analogs of LRDs allow for detailed studies of the underlying physical processes with archival multi-wavelength datasets unavailable in the high-z Universe. We show that the SDSS ugriz filters at z=0.4, 0.8 overlap well with the JWST filters used to select LRDs at z~5. We define a sample of ~1300 Local Red Dots (LoRDs) from SDSS quasars which share the same photometric colors of LRDs. A subset of the LoRD sample selected to have a V-shaped continua show prominent higher-order Balmer absorption features and [NeV]3426 emission, both of which would be missed in JWST/PRISM observations given the low spectral resolution. A composite SED of the LoRDs differs from a typical quasar SED in the UV/optical, but the two agree with each other in the NIR. The LoRD SED matches well with a stack of LRDs and can be modeled with a reddened AGN, a hot blackbody, and a variety of host galaxy templates. Interestingly, the LoRDs are detected in the X-rays at a rate comparable to the control sample. Whether this is due to different properties between the LoRDs and the LRDs, or the LoRDs having a soft X-ray spectrum unobservable at high-z is a question we aim to answer.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Sophie Jewell</span></div><div class="talk-title">Beyond mergers: the role of secular growth in driving galaxy-SMBH co-evolution<span class="chevron">▼</span></div><div class="talk-affil">University of Oxford</div></summary><div class="talk-abstract"><p>We have composed a large sample of 2600 disk-dominated galaxies hosting BL-AGN and used this to investigate secular BH growth in these systems. This work adds to a growing body of evidence that such growth mechanisms play a significant role in galaxy-SMBH co-evolution. Previous observational studies have used a small sample of rare &quot;bulgeless&quot; disk galaxies hosting BL-AGN to investigate systems with quiet merger histories and isolate secular BH growth. These initial studies found that galaxy-SMBH correlations persisted in galaxies with quiet merger histories. Cosmological volume simulations have subsequently found evidence of secular SMBH growth dominating over growth powered by galaxy mergers on cosmic timescales.</p><p>We test this claim observationally, using H⍺-based virial BH mass estimates to investigate how BH mass relates to total and bulge stellar mass in our disk galaxy sample. Performing bulge-disk decomposition of the surface brightness profile using GALFITM, we isolated disk-dominated galaxies with quiet merger histories and compared to those with significant stellar bulges. We find a clear correlation with total stellar mass in the full disk sample indicating that co-evolution persists in these systems. The correlation with total stellar mass for bulgeless galaxies is very similar to those with significant bugles. However, the two populations show irreconcilably different correlations with bulge stellar mass. This is the opposite of what we expect in a merger-driven scenario, providing strong evidence for the importance of merger-free mechanisms in driving co-evolution in disk galaxies.</p><p>In this talk I will review these results and discuss the broader implications for galaxy-SMBH co-evolution and cosmic SMBH growth.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Thorsten Naab</span></div><div class="talk-title">The rapid formation and growth of supermassive black hole seeds in dense star clusters at high redshift<span class="chevron">▼</span></div><div class="talk-affil">Max Planck Institute for Astrophysics</div></summary><div class="talk-abstract"><p>JWST reveals massive, compact star clusters at high redshift as well as early supermassive black holes. We test whether compact star clusters can produce the seeds of supermassive black holes using high-accuracy direct N-body simulations with the novel BIFROST code. The simulations follow the hierarchical assembly of clusters with up to several million stars, including stellar evolution, initial stellar multiples, and post-Newtonian dynamics for black-hole encounters. We find that intermediate-mass black holes (IMBHs) of up to several thousand solar masses form rapidly, within a few million years, through runaway collisions of massive stars. Subsequent tidal disruption events and gravitational wave driven mergers among IMBHs - predicted by this channel - further grow the remnants. A large parameter study shows that this pathway is most efficient in dense, low-metallicity clusters typical of the early Universe. We discuss implications for the cosmic IMBH formation rate and show that gas accretion can accelerate growth when the IMBHs are embedded in a nuclear star cluster, providing viable seeds for early supermassive black holes.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Tommaso Zana</span></div><div class="talk-title">Early Black Hole Growth via Super-Eddington Accretion: insights from High-Resolution Simulations<span class="chevron">▼</span></div><div class="talk-affil">Sapienza, University of Rome</div></summary><div class="talk-abstract"><p>Super-Eddington accretion may be crucial for explaining the existence of exceptionally massive black holes (BHs), exceeding 10^9 solar masses, observed as Active Galactic Nuclei at high redshifts (z∼6−7). Recent James Webb Space Telescope (JWST) observations strongly support the idea that early BHs grew significantly above the Eddington limit. Concurrently, numerical models are increasingly focusing on understanding the conditions, viability, and limitations of this extreme accretion process.
+In this context, I have conducted a detailed investigation into the impact of super-Eddington accretion on various BH seed masses within the typical gas-rich proto-galaxy environments at high redshifts (z∼15). I will present results from a state-of-the-art suite of high-resolution smoothed-particle hydrodynamical simulations. These simulations incorporate key physics, including star formation, photoionization, non-equilibrium cooling of primordial species, and a feedback prescription based on the slim disc model. I specifically tested the effects of both seed mass and feedback intensity on the BH growth process.
+I will demonstrate that, for gas-rich galaxies, even when isolated (i.e., without external interactions), neither star formation nor feedback processes can significantly limit the growth of black hole seeds, regardless of their initial mass. Super-Eddington accretion rapidly leads to the formation of very massive BHs (∼10^5 Msun) in just a few thousand years, making them overmassive with respect to their host galaxy, in agreement with JWST observations. Furthermore, I will show that through brief, super-Eddington bursts with small duty cycles, BHs can reach the observed masses by redshifts z∼6−7.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Yuzo Ishikawa</span></div><div class="talk-title">Peeling Back Little Red Dots with JWST/NIRSpec IFU: Spatially Resolving a Blue Host and Compact Black Hole Star<span class="chevron">▼</span></div><div class="talk-affil">Massachusetts Institute of Technology</div></summary><div class="talk-abstract"><p>Little Red Dots (LRDs) are a population of compact, faint, and extremely red sources recently identified by JWST. To date, broadband imaging and slit/grism spectroscopy have shown that LRDs exhibit a mysteriously complex spectrum: a “V-shaped” blue/red continuum, narrow emission lines, broad Balmer emission lines, and in some cases Balmer absorption. While the physical origin of these components remains debated, emerging studies propose that they arise from a compact accreting black hole, surrounded by dense gas, within a host galaxy. We test this model with deep, JWST/NIRSpec IFU observations of 5 broad Hα-selected LRDs using the PRISM and G395H modes. By jointly decomposing the spatial and spectral properties of the continuum, emission lines, and absorption components, we directly separate LRDs into two physically distinct structures. We detect extended blue continuum that is co-spatial with the extended narrow-line emission (e.g., [O III] and Hα), establishing the presence of a blue host galaxy. In contrast, the red continuum is compact and nearly co-spatial with the broad Balmer emission and absorption, consistent with the “Black Hole Star” model. These results provide direct, spatially resolved evidence that the narrow- and broad-line components arise from physically distinct regions. Together, our findings clarify the internal structure of LRDs and place new observational constraints on their role in early galaxy and massive black hole evolution.</p></div></details></div>
+</div>
+<footer class="site-footer">
+  <div class="star-deco">&#11819; &nbsp; &#9679; &nbsp; &#11819;</div>
+  <p>19 talks &middot; 3 invited &middot; <a href="index.html">All days</a></p>
+  <p style="margin-top:0.3rem">Tap any talk to expand its abstract</p>
+</footer>
+</body>
+</html>

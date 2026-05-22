@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071A1F">
+<title>SMBH 2026 — Wednesday, July 1, 2026</title>
+<style>
+:root{--bg:#071A1F;--panel:#0D2228;--panel2:#102E35;--accent:#63C7BE;--glow:#C6F3EE;--text:#E5F9F7;}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  min-height:100vh;
+}
+
+/* ---- Header ---- */
+.site-header{
+  background:var(--panel2);
+  border-bottom:2px solid var(--accent);
+  padding:0.9rem 1rem 0.75rem;
+  position:sticky;top:0;z-index:200;
+}
+.site-header .conf-name{
+  font-size:0.7rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--glow);margin-bottom:0.15rem;
+}
+.site-header .day-name{
+  font-size:1.55rem;font-weight:800;color:#fff;line-height:1.15;
+}
+.site-header .day-date{
+  font-size:0.82rem;color:var(--accent);margin-top:0.1rem;
+}
+.site-header .star-row{
+  font-size:0.65rem;letter-spacing:0.18em;color:var(--accent);
+  opacity:0.5;margin-top:0.3rem;
+}
+
+/* ---- Day navigation ---- */
+.day-nav{
+  display:flex;gap:0.4rem;
+  padding:0.6rem 0.75rem;
+  background:var(--bg);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.day-nav::-webkit-scrollbar{display:none}
+.day-nav a{
+  flex-shrink:0;
+  padding:0.3rem 0.7rem;
+  border-radius:20px;
+  font-size:0.78rem;font-weight:600;
+  text-decoration:none;
+  color:rgba(255,255,255,0.6);
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:background 0.15s,color 0.15s;
+}
+.day-nav a.active{
+  background:var(--accent);
+  color:#07111F;
+  border-color:var(--accent);
+  font-weight:700;
+}
+.day-nav a:hover:not(.active){
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+}
+
+/* ---- Container ---- */
+.container{max-width:640px;margin:0 auto;padding:0 0.75rem 3rem}
+
+/* ---- Theme section ---- */
+.theme-section{margin-top:1.6rem}
+.theme-header{
+  display:flex;align-items:flex-start;gap:0.55rem;
+  padding:0.55rem 0.85rem;
+  border-radius:8px;
+  background:var(--panel);
+  margin-bottom:0.75rem;
+  border-left:3px solid var(--t-accent);
+}
+.theme-num{
+  font-size:0.68rem;font-weight:700;
+  color:var(--t-accent);
+  letter-spacing:0.06em;text-transform:uppercase;
+  white-space:nowrap;margin-top:0.1rem;
+}
+.theme-label{font-size:0.83rem;font-weight:600;color:var(--glow)}
+
+/* ---- Talk card ---- */
+.talk-card{
+  background:var(--panel);
+  border-radius:10px;
+  margin-bottom:0.55rem;
+  border:1px solid rgba(255,255,255,0.07);
+  overflow:hidden;
+}
+.talk-card summary{
+  padding:0.8rem 0.9rem 0.75rem;
+  cursor:pointer;
+  list-style:none;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.talk-card summary::-webkit-details-marker{display:none}
+.talk-card[open] summary{border-bottom:1px solid rgba(255,255,255,0.07)}
+.talk-top{
+  display:flex;align-items:center;justify-content:space-between;gap:0.5rem;
+  margin-bottom:0.3rem;
+}
+.talk-speaker{font-weight:700;font-size:0.95rem;color:#fff}
+.invited-badge{
+  flex-shrink:0;
+  font-size:0.62rem;font-weight:700;
+  padding:0.12rem 0.42rem;border-radius:12px;
+  background:rgba(200,146,42,0.18);
+  color:#C8922A;
+  border:1px solid rgba(200,146,42,0.45);
+  letter-spacing:0.05em;text-transform:uppercase;
+}
+.talk-title{
+  font-size:0.87rem;color:var(--glow);line-height:1.4;
+  padding-right:1.4rem;
+  position:relative;
+}
+.chevron{
+  position:absolute;right:0;top:0.1rem;
+  font-size:0.65rem;color:var(--accent);
+  transition:transform 0.2s;
+}
+details[open] .chevron{transform:rotate(180deg)}
+.talk-abstract{
+  padding:0.7rem 0.9rem 0.9rem;
+  font-size:0.82rem;
+  color:rgba(255,255,255,0.68);
+  line-height:1.65;
+}
+.talk-abstract p+p{margin-top:0.6rem}
+.talk-affil{
+  font-size:0.74rem;
+  color:rgba(255,255,255,0.38);
+  margin-top:0.15rem;
+}
+
+/* ---- Empty day ---- */
+.empty-day{
+  margin-top:2rem;
+  text-align:center;
+  color:rgba(255,255,255,0.3);
+  font-size:0.9rem;
+  font-style:italic;
+}
+
+/* ---- Footer ---- */
+.site-footer{
+  margin-top:2.5rem;
+  padding:1.2rem 1rem 2rem;
+  border-top:1px solid rgba(255,255,255,0.06);
+  text-align:center;
+}
+.site-footer .star-deco{
+  font-size:0.7rem;letter-spacing:0.2em;
+  color:var(--accent);opacity:0.4;margin-bottom:0.6rem;
+}
+.site-footer p{font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.7}
+.site-footer a{color:var(--accent);text-decoration:none}
+
+/* ---- Index page ---- */
+.index-hero{
+  padding:2.5rem 1rem 2rem;text-align:center;
+}
+.index-hero h1{
+  font-size:2rem;font-weight:800;color:#fff;
+}
+.index-hero .subtitle{
+  font-size:0.95rem;color:var(--glow);margin-top:0.4rem;font-style:italic;
+}
+.index-hero .dates{
+  font-size:0.85rem;color:var(--accent);margin-top:0.5rem;
+}
+.day-grid{
+  max-width:480px;margin:0 auto;
+  padding:0 0.75rem 3rem;
+  display:flex;flex-direction:column;gap:0.75rem;
+}
+.day-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.2rem;
+  border-radius:12px;
+  text-decoration:none;
+  background:var(--panel2);
+  border:1px solid rgba(255,255,255,0.08);
+  transition:border-color 0.15s,background 0.15s;
+}
+.day-btn:hover{
+  border-color:var(--accent);
+  background:var(--panel);
+}
+.day-btn-left .day-name-big{
+  font-size:1.1rem;font-weight:700;color:#fff;
+}
+.day-btn-left .day-date-small{
+  font-size:0.78rem;color:var(--accent);margin-top:0.1rem;
+}
+.day-btn-right{
+  font-size:0.7rem;color:rgba(255,255,255,0.3);
+}
+.talk-count-badge{
+  font-size:0.72rem;font-weight:600;
+  padding:0.2rem 0.55rem;border-radius:20px;
+  background:rgba(255,255,255,0.07);
+  color:rgba(255,255,255,0.45);
+}
+
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="conf-name">SMBH 2026 · Montr&eacute;al</div>
+  <div class="day-name">Wednesday</div>
+  <div class="day-date">July 1, 2026</div>
+  <div class="star-row">&#9733; &nbsp; &#9679; &nbsp; &#9733; &nbsp; &#9679; &nbsp; &#9733;</div>
+</header>
+<nav class="day-nav"><a href="day1.html" class="">Monday</a><a href="day2.html" class="">Tuesday</a><a href="day3.html" class="active">Wednesday</a><a href="day4.html" class="">Thursday</a><a href="day5.html" class="">Friday</a></nav>
+<div class="container">
+<div class="theme-section"><div class="theme-header" style="--t-accent:#5FA8B8"><span class="theme-num">Theme 2</span><span class="theme-label">Black Hole Growth and AGN Feedback</span></div><details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Andrzej Niedzwiecki</span></div><div class="talk-title">Decoding the Emission of M87&#x27;s Active Nucleus<span class="chevron">▼</span></div><div class="talk-affil">University of Lodz, Poland</div></summary><div class="talk-abstract"><p>We present a physically self-consistent model of the active nucleus of M87 based on GRMHD simulations that incorporate the electron energy balance. Our model simultaneously reproduces the broad-band spectrum, the EHT intensity images, and the short-timescale variability of M87, providing a unified physical framework for these observables. In our solution, the bulk of the radiation observed above 100 GHz originates in the immediate vicinity of the black hole rather than in a stratified jet. Our results challenge commonly adopted phenomenological interpretations and demonstrate that a consistent treatment of electron thermodynamics is essential for connecting images, spectra, and variability in models of black hole accretion flows.</p></div></details></div><div class="theme-section"><div class="theme-header" style="--t-accent:#90A7FF"><span class="theme-num">Theme 3</span><span class="theme-label">Accretion, Jets and Multi-messenger Signatures</span></div><details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Marie-Joëlle Gingras</span></div><div class="talk-title">Complex Dynamics of Multiphase Gas and Stars in X-ray Cooling Cores<span class="chevron">▼</span></div><div class="talk-affil">University of Waterloo, Waterloo Centre for Astrophysics</div></summary><div class="talk-abstract"><p>Studies of galaxy cluster cores have shown that radio-mechanical AGN feedback is needed to regulate the growth of massive galaxies. While the past decades have cemented the importance of AGN feedback in offsetting large-scale cooling, observations of multiphase gas and young stars associated with jets and X-ray cavities revealed that it can also locally promote cooling. However, our understanding of mechanical AGN feedback is still incomplete. I present optical IFU spectroscopy of the centres of four strong cooling cores. Few studies map stellar dynamics and resolve star formation histories alongside detailed nebular kinematics. This revealed peculiar velocities of the central galaxies relative to their nebular gas, later also observed in hot atmospheres by XRISM. Combined with X-ray and radio data, we compare the kinematics of different gas phases and stars. Abell 1835 and PKS 0745-191, both with powerful AGN feedback, contain two kinematically distinct phases of nebular gas: a quiescent phase and one churned-up by the AGN. Outflows aligned with X-ray cavities enabled the first direct measurements of cavity velocities from nebular gas. The low speeds suggest mass-loading from uplifted gas. The stellar kinematics and star formation histories of these systems further support AGN-stimulated cooling and star formation, from the extended young stellar populations in their cores and the detection in one system of young stars consistent with having cooled out of a co-spatial gas outflow. These results provide a multiphase view of radio-mechanical AGN feedback regulating cooling while shaping the kinematics and star formation histories of cluster cores.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Anwesh Majumder</span></div><div class="talk-title">The role of turbulence in galaxy clusters: A XRISM perspective<span class="chevron">▼</span></div><div class="talk-affil">University of Waterloo</div></summary><div class="talk-abstract"><p>The high-resolution X-ray spectral capability of the recently launched XRISM telescope has enabled us to measure gas motions in galaxy clusters. New studies, therefore, are helping to answer questions like how much of these gas motions driven by AGN is due to turbulence. I will briefly present recent results on gas motions in Cygnus A, Hydra-A, and discuss implications on the role of turbulence. In Cygnus A, XRISM has detected a velocity dispersion of 261 +/- 13 km/s, along with a cooler gas phase that has an even broader velocity dispersion of 440 +/- 130 km/s. The total energy due to the kinetic motion is 5.1*10^{60} erg, consistent with the energy associated with the central radio source. We therefore suggest that such large dispersions are mainly due to the expanding cocoon shock driven by the radio source. Hydra-A, on the other hand, has a lower velocity dispersion of 160 km/s over the whole field of view, but the dispersion is asymmetric (ranging from 80 - 260 km/s) when the field of view of XRISM is divided. Furthermore, we find velocity dispersion to be nearly constant (140-160 km/s) with respect to radius toward the Northern direction, where giant bubbles exist. These Hydra-A results are inconsistent with a pure Kolmogorov turbulence scenario. In conclusion, I will discuss implications of our results and discuss scenarios under which turbulence can offset cooling throughout the cooling radius in clusters like Hydra-A and other clusters observed so far with XRISM.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Megan Donahue</span><span class="invited-badge">Invited</span></div><div class="talk-title">Feeding The Dragons: Observational Perspective<span class="chevron">▼</span></div></summary><div class="talk-abstract"><p>We don’t know exactly how black holes adjust their fueling rates to the large scale halo properties of their galaxy and cluster hosts. But
+observations show that’s what they have done by about redshift 1. Observations also yield clues as to how they do it. I will endeavor
+to review what we know, what we think we know, and what we’d like to find out based multiwavelength, multiscale observations of supermassive black holes and their baryon halo.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Sheila Kannappan</span></div><div class="talk-title">From Dwarfs to Giants: Galaxy and Group-Halo Mass Dependence of Black Hole Fueling &amp; Feedback at z~0<span class="chevron">▼</span></div><div class="talk-affil">University of North Carolina at Chapel Hill</div></summary><div class="talk-abstract"><p>I will present evidence for clear shifts in AGN fueling and feedback at key galaxy and group-halo mass scales, based on the uniquely comprehensive AGN census for the volume-limited z~0 RESOLVE and ECO surveys. This census combines traditional and new methods of optical and mid-IR detection, notably including both SF-AGN (low-metallicity/highly-star-forming AGN found using VO diagrams but not traditional BPT criteria) and Bonus AGN (star-forming AGN found using revised BPT criteria). Characteristic AGN types shift with galaxy and group-halo mass following correlations with star formation, with SF-AGN at the high-SF end (typical of dwarf, non-satellite galaxies), then Bonus AGN, then Composites, then Conventional AGN at the low-SF end (typical of massive or satellite galaxies). The volume-limited census design of RESOLVE and ECO, like a simulation box, yields AGN frequencies that directly constrain active black hole occupation fractions. Dividing RESOLVE+ECO into dwarf, transitional, and giant galaxies at the threshold and bimodality scales (galaxy mass ~10^9.5 and 10^10.5 Msun, for centrals equivalent to halo mass ~10^11.4 and 10^12 Msun), we find that: (1) inclusion of SF-AGN and Bonus AGN yields a ~5x higher dwarf AGN frequency than typically reported, but nonetheless (2) AGN detections jump by a factor of ~5 going from dwarf to transitional galaxies. Structural analysis shows that the sharp uptick in AGN detection at transitional masses is linked to &quot;green nuggets&quot;: dense, compaction-formed centrals actively quenching from blue to red over the halo mass range of shock heating from ~10^11.4 to 10^12 Msun. Feedback from dwarf/transitional AGN may add to such quenching, as we find clear group-integrated HI gas depletion for AGN-hosting halos in the same halo mass range. At higher masses we find weaker evidence for any AGN imprint on group HI content.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Nicole Ford</span></div><div class="talk-title">Galactic Center at Sub-Parsec Scales: Studying Gas Ionization and Kinematics Around SgrA* with JWST<span class="chevron">▼</span></div><div class="talk-affil">McGill University</div></summary><div class="talk-abstract"><p>SgrA* is the nearest quiescent massive black hole (BH), and its proximity offers a unique opportunity to study its surrounding fuel supply. Using JWST/MIRI observations, we peer through galactic dust to measure the spatial, kinematic, and intensity distribution of ionized gas within the central ~0.1 parsec of SgrA*. We use forbidden lines to derive gas radial velocities, line ratios, and abundances for multiple distinct kinematic components that overlap along the line of sight. The three dominant emitting structures that we identify are: the minispiral’s Northern Arm, the Bar region, and high-velocity (&gt;~ 600 km/s) gas clumps likely produced by colliding Wolf–Rayet stellar winds or SgrA* outflows. We infer the radiation field hardness and metallicity of each of these emitting gas structures. This study sheds light on the origins of the galactic fuel reservoir and how it is physically shaped and ionized by stellar as well as SgrA*&#x27;s activity. Our findings contextualize accretion and feedback processes in low luminosity AGN and quiescent SMBH systems where the central parsec is unresolvable.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Giulia Ortame</span></div><div class="talk-title">Small hosts, big appetites: unveiling rapid and early low-mass black hole growth in cosmological zoom-in simulations of dwarf galaxies<span class="chevron">▼</span></div><div class="talk-affil">Institute of Astronomy &amp; Kavli Institute for Cosmology, University of Cambridge</div></summary><div class="talk-abstract"><p>Dwarf galaxies are ideal laboratories to probe the interplay between galaxy formation and the growth of black holes (BHs) in the early Universe. Mounting observational evidence reveals the presence of BHs in low-mass galaxies across cosmic time, with JWST uncovering a likely population of overmassive BHs at 2 ≲ z ≲ 11. Simulations struggle to reproduce this high-redshift regime, motivating revisions to BH accretion and active galactic nucleus (AGN) feedback modelling. We present high-resolution cosmological zoom-in simulations of a dwarf galaxy based on FABLE physics, introducing novel sink-based BH accretion models and relaxing the fiducial assumption of strong supernova feedback. BHs accrete more efficiently in the sink-based runs compared to the ‘traditional’ Bondi-based counterparts, while the impact of AGN feedback on star formation ranges from negligible to early (z ≳ 2) and rapid quenching maintained by fast, hot outflows down to z = 0. We further assess the performance of two widely used dynamical mass estimators and find significant departures from the true dynamical mass, especially during the high-redshift dwarf assembly. Since our galaxy is dark-matter-dominated at all times and radii, BH growth, tied to the baryon cycle, shows no clear correlation with global dynamical properties. Simulations with efficient AGN feedback yield overmassive BHs relative to extrapolated local BH mass − stellar mass scaling relations, hinting at a potential connection between dormant BHs in local dwarfs and high-redshift JWST BHs. High-redshift feedback from rapidly assembled, overmassive BHs drives metal-enriched outflows that pollute the outer circumgalactic medium, leading to flat metallicity gradients that persist down to z = 0.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Enrico Piconcelli</span></div><div class="talk-title">News from the Bright End: Extreme Outflows and X-ray Weakness in Luminous Quasars from WISSH<span class="chevron">▼</span></div><div class="talk-affil">Osservatorio Astronomico di Roma (INAF)</div></summary><div class="talk-abstract"><p>Highly luminous quasars provide the best laboratories to investigate the bright end of feedback and accretion processes. In this talk, I will present recent multi-wavelength results from the WISSH survey, which targets a sample of ~100 quasars with bolometric luminosities Lbol&gt; 10^47 erg/s at Cosmic Noon.
+We find that a significant fraction of WISSH QSOs exhibit ultra-fast (v &gt; 0.1c) BAL outflows in the UV, with high kinetic power sufficient to drive efficient feedback. Multi-epoch spectroscopy of a subset of these extreme BAL quasars reveals decelerating outflows, likely caused by interactions with the interstellar medium, which may provide a rare demonstration of feedback in action.
+Despite the narrow range in Lbol, WISSH QSOs show a broad dispersion in X-ray luminosity, with about one-third classified as intrinsically X-ray weak. This indicates significant heterogeneity in the X-ray corona and inner accretion flow, both within this population and compared to typical, less powerful AGN. Finally, the blueshift of the CIV emission line, tracing nuclear ionized winds, strongly depends on X-ray luminosity but not on UV or NIR luminosities. These results suggest a close coupling between the X-ray corona and the kinematics of the inner emission-line region in these highly accreting, powerful AGN.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Allison Man</span></div><div class="talk-title">Multiphase circumgalactic medium of a brightest cluster galaxy with JWST, ALMA and MUSE<span class="chevron">▼</span></div><div class="talk-affil">University of British Columbia</div></summary><div class="talk-abstract"><p>I will present the analysis towards the multiphase (warm+cold molecular and ionized) gas and dust content toward a cool-core brightest cluster galaxy (BCG) at z=0.4, using new JWST observations complemented by ALMA, MUSE, VLA, and Chandra data. The target harbours an AGN and hosts one of the largest known H2 reservoirs and elevated star formation. We obtained new JWST NIRSpec and MIRI MRS observations that detect warm H2 lines, PAH complexes, and ionized nebular lines. The H2 line ratios indicate a different temperature distribution in the circumgalactic medium (CGM) compared to the interstellar medium within the BCG. The strength of the PAH 11 micron complex relative to other PAH features indicates the prevalence of neutral PAH molecules. The PAH complexes are found in the BCG core region, as well as in dense clumps embedded within the more diffuse CGM along the radio synchrotron emission, suggesting shock-driven star formation. We perform resolved stellar population synthesis modelling over the system, as well as photoionization and shock modelling to constrain the metallicity and excitation conditions. I will summarize the implications of this pilot study on the intricate link between the enhanced star formation in this BCG and its CGM, as well as the role of AGN feedback in regulating star formation. This case study serves as a pathfinder for using JWST to unveil the warm molecular gas in galaxies for investigating the energy and mass flows in feedback processes.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Jeremiah Paul</span></div><div class="talk-title">Ruling Out Compact Jets as the Dominant Source of Radio Emission in Radio-quiet, High-Eddington-ratio Active Galactic Nuclei<span class="chevron">▼</span></div><div class="talk-affil">Texas Tech University</div></summary><div class="talk-abstract"><p>The question of whether active galactic nuclei (AGNs) produce jets at high accretion rates holds powerful implications for our understanding of how early seed black holes grew. Intriguingly, general relativistic magnetohydrodynamics simulations often predict the launching of moderately large-scale jets from super-Eddington accretion flows, but this prediction seems at odds with observations indicating most high/super-Eddington AGNs are radio quiet. Core radio emission in radio-quiet AGNs can originate from multiple processes with varied spectral signatures and morphologies, but the dominant emission mechanism is still actively debated. Apart from compact jets, likely sources include coronal activity, outflows/winds and shocks, and star formation activity. We used the ratio of radio to X-ray luminosities to probe the dominant source of radio emission for a sample of 69 radio-quiet, high/super-Eddington AGNs with black-hole masses ~ 10^5 - 10^9 M_sun. With this wide dynamic range in black-hole masses, we adapted existing formalisms for how jet-dominated radio emission and accretion-powered X-ray emission scale with black-hole mass into the super-Eddington regime (where an AGN is expected to enter a radiatively inefficient &#x27;slim disk&#x27; state). Here, I show how the radio/X-ray luminosity ratios observed across this mass range appear inconsistent with a jet-dominated model for radio emission. I discuss how our results may instead suggest a combination of coronal and outflow activity, with increased excess from strong outflows at higher accretion rates. I also discuss limitations of the present study and explore future opportunities to observe the mechanisms for radio emission and better understand how much accretion power may be advected directly into the black hole vs. radiated away or ejected by outflows/jets.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Julie Hlavacek-Larrondo</span></div><div class="talk-title">Multiphase Radio-Mode AGN Feedback as Seen by JWST<span class="chevron">▼</span></div><div class="talk-affil">Université de Montréal</div></summary><div class="talk-abstract"><p>The best place to study radio-mode AGN feedback is in the hot atmospheres of galaxy clusters, which host the most massive black holes and where we can directly image their impact on the surrounding medium. At cluster centers, supermassive black holes launch powerful relativistic jets that inject vast amounts of energy through shock fronts, sound waves, turbulence, and molecular outflows. In this talk, I will present novel multi-wavelength observations that, for the first time, allow us to trace the entire radio-mode feedback cycle—from heating, to cooling, to feeding, and across scales from kiloparsecs down to parsecs. First, I will present new JWST observations of the archetypal Centaurus cluster, where NIRSpec/IFU data reveal a rotating circumnuclear disk directly connected to the surrounding filament network. This structure provides the long-sought missing link that channels gas from kiloparsec to 100-pc scales and ultimately into the central black hole, effectively closing the feedback loop. I will then place these results in a broader context using the Perseus cluster, where the combination of JWST with state-of-the-art XRISM and SITELLE/IFU observations allows us to map the full multiphase feedback cycle. In this system, I will show that the hot X-ray–emitting gas is deeply intertwined with the cold and warm nebular components, demonstrating that AGN feedback is inherently multiphase and dynamically complex. Together, these findings shed new light on the fundamental mechanisms that drive galaxy evolution, particularly supermassive black hole fueling/feedback and its intricate interplay with the host galaxy.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Olivia Pereira</span></div><div class="talk-title">Probing the Physical State of Warm Gas in NGC 4696: New Infrared Diagnostics for JWST/NIRSpec<span class="chevron">▼</span></div><div class="talk-affil">Université de Montréal</div></summary><div class="talk-abstract"><p>The best place to study AGN feedback processes is in galaxy clusters, with Brightest Cluster Galaxies (BCGs) serving as ideal test cases for observations. While the macro-scale effects of AGN feedback are well documented, the physical mechanisms that excite the warm molecular gas at sub-kiloparsec scales, required to bridge the gap between the hot ICM and the supermassive black hole (SMBH) accretion flow, remain a subject of intense debate. 
+In this talk, I will present for the first time Cycle 3 JWST/NIRSPec Integral Field Unit (IFU) observations of the innermost 640 x 640 pc region of NGC 4696, the prototypical cool-core BCG of the Centaurus cluster. I will report the robust detection of over 20 atomic and molecular lines, with emphasis on the rovibrational H₂ S-series transitions. These lines demonstrate significant spatial variation across the map, revealing structures previously blurred in ground-based data. Based on Cloudy simulations, I will present novel infrared versions of the BPT diagram optimized for the JWST era. Using this framework, I will provide the first interpretations of the gas’s physical state across distinct sub-regions, resolved at previously inaccessible scales. This work highlights the transformative power of JWST in quantifying the energetics of feeding and feedback processes at the heart of the most massive galaxies in the local universe.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Pierre Vermot</span></div><div class="talk-title">A JWST/MIRI-MRS view of the Galactic Center : new evidence for recent star formation<span class="chevron">▼</span></div><div class="talk-affil">LIRA - Observatoire de Paris</div></summary><div class="talk-abstract"><p>We present new JWST/MIRI-MRS observations of the central parsec of the Galactic Center, targeting the circumnuclear disk (CND) and the central cavity (CC) around the supermassive black hole. Using full 5–27 μm spectroscopy combined with CLOUDY photoionization modeling, we decompose the mid-infrared emission into distinct gas phases and map their spatial distribution.</p><p>In both regions, the emission is dominated by warm ionized gas at temperatures of 10⁴–10⁴.⁸ K. Molecular gas is prominent and structured in the CND but largely absent in the CC, while coronal gas is detected at the interfaces between phases. An elongated, hot coronal feature is identified in the CND, oriented perpendicular to the direction toward the SMBH, suggestive of a large-scale shock.</p><p>Abundance measurements reveal enhanced α and CNO elements with strong Fe depletion, consistent with recent enrichment by core-collapse supernovae and massive stellar winds, and a minimal contribution from Type Ia supernovae. This chemical pattern provides new evidence for recent massive star formation in the immediate vicinity of the Galactic Center, rather than long-term cumulative enrichment.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Qingling Ni</span></div><div class="talk-title">Central star formation in local AGN hosts: is there tension between coeval growth and AGN feedback?<span class="chevron">▼</span></div><div class="talk-affil">MPE</div></summary><div class="talk-abstract"><p>While negative AGN feedback may suppress star formation in galaxy centers, the coeval growth scenario of black holes and galaxies predicts a close observational link between AGN activity and central star formation. Utilizing a sample of approximately 3000 galaxies in the Mapping Nearby Galaxies at Apache Point Observatory (MaNGA) survey that have X-ray coverage,  we investigate how AGN fraction depends on the star formation rate surface density within the central 1 kpc region (ΣSFR,1 kpc). We find that the fraction of X-ray AGN with relatively high specific black hole accretion rates increases with ΣSFR,1 kpc, consistent with the coeval growth picture. Comparison of the mean star formation rate surface density (ΣSFR) profiles of the host galaxies of these X-ray AGN and matched normal galaxies reveals elevated ΣSFR in X-ray AGN hosts across the entire central region. As for optically-selected AGN, their hosts also tend to show elevated ΣSFR in the central regions, but differ from X-ray AGN in terms of the trend of AGN fraction vs. ΣSFR,1 kpc, which can be explained by selection effects. Overall, these trends support the coeval growth picture, and they also do not contradict observational evidence for AGN feedback, as the time-averaged impact of local AGN-driven outflows in our sample appears to be modest.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Stéphanie Juneau</span></div><div class="talk-title">Inside the Belly of the Beast: A Sharp New Look at AGN Feedback with AO-Assisted MUSE<span class="chevron">▼</span></div><div class="talk-affil">NSF NOIRLab</div></summary><div class="talk-abstract"><p>NGC 7582 is a nearby galaxy with a heavily obscured active galactic nucleus (AGN). Prior MUSE integral-field spectroscopy revealed a 600 parsec circumnuclear star-forming ring and a striking biconical ionized outflow extending over kiloparsec scales. This inner ring likely helps collimate the AGN-driven wind and contributes to the heavy nuclear obscuration. Using MUSE with adaptive optics, we resolve the central region at &lt;0.1arcsec (10 parsec) spatial resolution. This unprecedented view reveals a previously unseen compact ionized outflow (10 pc across) embedded within the known large-scale outflow bicone. The small-scale outflow originates in the immediate vicinity of the AGN, carrying high-velocity gas that was blurred in earlier data. It lies fully inside the footprint of the kpc-scale outflow, indicating a nested, multi-scale wind structure. The discovery of this inner outflow demonstrates that AGN feedback in NGC 7582 operates on nested scales from 10 pc to over 1 kpc. Our findings underscore the importance of high-resolution IFU observations in linking the nuclear wind launching region to its galaxy-scale impact. NGC 7582 now serves as a striking example of how an obscured, highly accreting AGN can drive multi-scale outflows and interact with host galaxy substructure as part of the feedback process. While such studies are currently limited to nearby or lensed galaxies, they preview the capabilities of future 3D spectroscopic observations at high redshift with JWST and ELTs.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Swetha Sankar</span></div><div class="talk-title">When Jets Don’t Quench: Environment-Driven Multiphase Feedback in Star-Forming Radio Galaxies<span class="chevron">▼</span></div><div class="talk-affil">Johns Hopkins University</div></summary><div class="talk-abstract"><p>Despite their presumed role in quenching star formation, the impact of radio jets on the multiphase ISM remains poorly constrained observationally. Specifically, star-forming low-excitation radio galaxies (LERGs), a newly identified population whose abundance peaks at z~2, directly challenge the canonical paradigm in which jet-mode AGN are confined to quiescent hosts. We present Gemini/GNIRS near-infrared spectroscopy of nine low-redshift (z &lt; 0.1) star-forming LERGs, low‑z analogs of gas‑rich, high‑z radio galaxies. These galaxies host substantial cold molecular gas reservoirs (L′CO~10⁹ K km s⁻¹ pc²), young stellar populations (&lt;100 Myr), and shock-excited warm H2 emission (T≈4000 K). Morphological disturbances and close companions in ~60% of the sample indicate that gas-rich interactions supply the cold gas that fuels star formation and sustains jet-mode SMBH accretion. These galaxies thus reveal a transient regime where merger-driven cold-gas inflow overwhelms jet-driven depletion, forcing star formation and mechanical feedback to coexist. They also provide a unique laboratory to quantify how environment regulates jet–ISM coupling efficiencies, energy partitioning across gas phases, and feedback timescales, enabling direct comparison with sub-grid AGN feedback in cosmological simulations. With JWST, ALMA, ngVLA, and ELT now resolving jet–gas interactions in unprecedented detail, this population provides a timely benchmark for testing AGN feedback models across cosmic time.</p></div></details></div><div class="theme-section"><div class="theme-header" style="--t-accent:#F28A64"><span class="theme-num">Theme 4</span><span class="theme-label">First Black Holes, Seeds and High-redshift</span></div><details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Alice Young</span></div><div class="talk-title">SMBHs revealed through AGN variability: on the photometrically determined BH mass to stellar mass relation across cosmic time<span class="chevron">▼</span></div><div class="talk-affil">Stockholm University</div></summary><div class="talk-abstract"><p>Revealing the properties of supermassive black holes (SMBHs) throughout cosmic time is an essential step towards unravelling the mysteries that have emerged from recent observations of the high-z universe. In this talk, I will present our re-imaging survey of the Hubble Ultra Deep Field (HUDF) which is designed to probe a more complete sample of active galactic nuclei (AGN) covering a range of redshifts out to z ~ 7. Further, JWST has revealed a surprisingly large number of black hole candidates in the early universe that could not be detected with HST. These discoveries, in addition to variability studies with HST indicating high number densities at early times, highlight the importance of understanding the properties of this previously unknown and unexpected population of black holes. As such, I will also describe our bespoke SED fitting code invoking spectral decomposition which allows for the estimation of BH masses from photometric measurements alone. This technique offers a unique comparison to the trends in the BH mass-stellar mass plane observed in other studies. I will highlight how our results have significant implications for SMBH formation by examining the observed tendency of these sources to deviate from local scaling relations with increasing redshift. Similar trends are also seen at the low mass end of our sample of active galaxies demonstrating that our study of variable sources provides key clues towards understanding SMBH-galaxy co-evolution.</p></div></details>
+<details class="talk-card"><summary><div class="talk-top"><span class="talk-speaker">Elia Pizzati</span></div><div class="talk-title">Quasar Clustering and Proximity Zones Constrain Early Supermassive Black Hole Growth<span class="chevron">▼</span></div><div class="talk-affil">Harvard University</div></summary><div class="talk-abstract"><p>Understanding how supermassive black holes (SMBHs) formed and grew to billion-solar-mass scales by redshift z&gt;7 remains a central challenge in astrophysics. Although many theoretical pathways have been proposed, the lack of robust empirical constraints has long prevented meaningful discrimination among competing formation scenarios.
+In recent years, however, such constraints have begun to emerge. Proximity zone sizes in high-redshift quasar spectra now place tight limits on the duration of quasar activity episodes, while clustering measurements constrain the host halo masses and integrated duty cycles of quasars. For the first time, these observables allow us to move beyond instantaneous quantities — such as black hole mass and luminosity — and instead probe the full accretion histories of early quasars.
+In this talk, I will present a new framework that leverages this emerging constraining power. The model generates synthetic SMBH accretion histories and quasar light curves coupled self-consistently to merger trees extracted from a large N-body cosmological simulation. This approach links individual SMBH growth tracks — including both accretion and mergers — and quasar spectra to population-level statistics such as clustering, black hole mass distributions, and luminosity functions.
+Confronting these predictions with observations provides strong discriminatory power among competing formation scenarios: we find that sustained, episodic phases of super-critical accretion are required to simultaneously produce the most massive black holes by z&gt;7 and reproduce the observed properties of the earliest quasars.</p></div></details></div>
+</div>
+<footer class="site-footer">
+  <div class="star-deco">&#11819; &nbsp; &#9679; &nbsp; &#11819;</div>
+  <p>18 talks &middot; 1 invited &middot; <a href="index.html">All days</a></p>
+  <p style="margin-top:0.3rem">Tap any talk to expand its abstract</p>
+</footer>
+</body>
+</html>
